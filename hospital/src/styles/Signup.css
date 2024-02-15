@@ -1,0 +1,89 @@
+
+.signup-container {
+    width: 400px;
+    margin: auto;
+    color: white;
+    margin-top: 50px; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #091243;
+  }
+
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .underline {
+    width: 50px;
+    height: 2px;
+    background-color:yellow;
+    margin: 0 auto;
+  }
+  
+  .inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  .input input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .submit-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .submit {
+    padding: 10px 20px;
+    background-color: white;
+    color: #091243;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .gray {
+    background-color: white;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .forgot-password span {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container {
+      width: 100%;
+    }
+  }
+  

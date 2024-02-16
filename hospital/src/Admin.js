@@ -1,8 +1,10 @@
 import React from 'react'
-
+import './styles/admin.css'
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <>
+        {/* WRITE CODE FOR ADMIN PANEL HERE */}
+    </>
   )
 }
 

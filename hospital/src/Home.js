@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './styles/home.css'
+import Footer from './component/Footer'
 const Home = () => {
   return (
     <>
@@ -34,28 +35,32 @@ const Home = () => {
    <h2 className='heading'>Contact Us</h2>
     <div className='container'>
       <div className='image'>
-        <img src='./images/contact-us-illustration-scaled.png' alt='contact'/>
+        <img src='https://purepng.com/public/uploads/large/purepng.com-doctorsdoctorsdoctors-and-nursesa-qualified-practitioner-of-medicine-aclinicianmedical-practitionermale-doctornotepad-1421526856940m4nhi.png' alt='contact'/>
       </div>
 
-        {/* <form className='form'>
-                <div className="sec">
-                    <input type="text" required placeholder="name"></input>
-                </div>
-                <div className="sec">
-                    <input type="email"  required placeholder="Email"></input>
-                </div>
-                <div className="sec">
-                    <input type="tel" required max="10" placeholder="Phone no."></input>
-                </div>
-                <div className="sec">
-                    <textarea  rows="2" placeholder="enter text"></textarea>
-                </div>
-               <button className="submit"  type="submit">SUBMIT</button>
-        </form> */}
-
+      <div class='contact-form'>
+          <form action='#' method='post'>
+            <div class='form-group'>
+              <label for='name'>Name:</label>
+              <input type='text' id='name' name='name' required></input>
+            </div>
+            <div class='form-group'>
+              <label for='email'>Email:</label>
+              <input type='email' id='email' name='email' required></input>
+            </div>
+            <div class='form-group'>
+              <label for='message'>Message:</label>
+              <textarea id='message' name='message' rows='4' required></textarea>
+            </div>
+            <div class='form-group'>
+              <button type='submit'>Send Message</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
+<Footer/>
     </>
   )
 }

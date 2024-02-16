@@ -81,3 +81,83 @@ color: #fec941;
     margin-bottom: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+/* CONTACT */
+
+  .contact {
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .contact .heading {
+    color: #091243;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .contact .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact .container  .image {
+    flex: 1;
+  }
+  
+  .contact .container .image img {
+   width: 35%;
+   justify-content: center;
+   filter: blur(0.2px);
+  }
+  
+  .contact .contact-form {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #091243;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact .contact-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .contact .contact-form label {
+    display: flex;
+    margin-bottom: 5px;
+    color: #fec941;
+  }
+  
+  .contact .contact-form input[type='text'],
+  input[type='email'],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .contact .contact-form textarea {
+    resize: vertical;
+  }
+  
+  .contact .contact-form button {
+    background-color: #fec941;
+    color: #091243;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact .contact-form button:hover {
+    background-color: white;
+    color: #fec941;
+  }
+  

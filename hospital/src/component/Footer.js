@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../styles/footer.css'
 const Footer = () => {
   return (
    <>
@@ -7,7 +8,7 @@ const Footer = () => {
         <div className='container'>
           <div className='box'>
             <h3 className='foottext'>About us</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eaque aperiam adipisci nesciun</p>
+            <p className='text1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eaque aperiam adipisci nesciun</p>
           </div>
 
           <div className='box'>
@@ -21,21 +22,21 @@ const Footer = () => {
 
           <div className='box'>
           <h3 className='foottext'>Follow us on</h3>
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">LinkedIn</a>
+                <a href="#" className='text1'>Facebook</a>
+                <a href="#" className='text1'>Instagram</a>
+                <a href="#" className='text1'>Twitter</a>
+                <a href="#" className='text1'>LinkedIn</a>
           </div>
 
         <div className='box'>
           <h3 className='foottext'>contact info</h3>
-          <p>Phone no. : 765-213-1234</p>
-          <p>Email : test1@gamail.com</p>
+          <p className='text1'>Phone no. : 765-213-1234</p>
+          <p className='text1'>Email : test1@gamail.com</p>
         </div>
         
         </div>
         <h1 className="copyright">
-            &copy; copyright @ 2023 by DEALHUB
+            &copy; copyright @ 2024|HEAL EAZY
         </h1>
       </div>
    </>

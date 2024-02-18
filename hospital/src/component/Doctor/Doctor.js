@@ -3,9 +3,10 @@ import './forDoctor.css'
 import Avatar from '@mui/material/Avatar';
 
 
-export default function index() {
+export default function Doctor() {
   return (
     <>
+    <div className='doctor'>
       <div className="container">
         <div className="avatar">
         <Avatar
@@ -95,6 +96,7 @@ export default function index() {
         <br />
         <br />
       </div> 
+      </div>
     </>
   )
 }

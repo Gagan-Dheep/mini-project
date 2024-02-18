@@ -1,0 +1,52 @@
+.avatar{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin: 7px;
+}
+.avatar-name{
+    background-color: grey;
+    margin: 10px;
+    margin-left: 50px;
+    padding: 2px;
+    border: solid black;
+    /* display: block; */
+}
+.inputs{
+    background-color: beige;
+    width: 700px;
+    margin: auto;
+}
+
+.usePer{
+    display: block;
+    padding: 5px;
+    margin: 5px;
+}
+
+.Personal-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Hospital-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Patients-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    background-color:  rgb(31, 124, 124);
+}

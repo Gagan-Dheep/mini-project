@@ -22,7 +22,7 @@ export default function Doctor() {
             <div className="avatar-name">Hospital working in</div> */}
         </div>
         </div>
-        <div className="inputs">
+        <div className="p_details">
             <div className="Personal-details">
                 <h2>Personal details</h2>
                 {/* <input type="text" name="experience" id="experience" placeholder='Enter years of experience'/> */}

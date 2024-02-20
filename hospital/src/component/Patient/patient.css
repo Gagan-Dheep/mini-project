@@ -40,17 +40,24 @@
   
   /* Styles for Patient Profile Button */
   .p_profile {
+    display: flex;
+    width: 200px;
+    margin-top: 8px;
+    padding: 10px;
+    background:#091243 ;
+    border: 1px solid white;
+    flex-direction: column;
     text-align: center;
     margin-bottom: 20px;
   }
   
   .p_profile p {
     font-size: 48px;
-    color: #007bff;
+    color: yellow;
   }
   
   .p_profile button {
-    background-color: #007bff;
+    background-color: #091243;
     color: #fff;
     padding: 10px 20px;
     border: none;

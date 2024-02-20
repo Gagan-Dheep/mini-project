@@ -42,9 +42,7 @@ const Patient = () => {
   };
 
   const handleSave = () => {
-    // Here you can save the patient data, for example, by sending it to a server or storing it locally.
     console.log(patientData);
-    // Reset edit mode and form after saving
     setEditMode(false);
     setPatientData({
       name: "",
@@ -61,17 +59,12 @@ const Patient = () => {
     <>
       {close ? (
         <div className="patprofile">
-          <button className="close-btn" onClick={() => setClose(false)}>
-            Close
+          <button className="close-btn" onClick={() => setClose(false)}>Close
           </button>
           <label>
             Patient Name:
             {editMode ? (
-              <input
-                type="text"
-                name="name"
-                value={patientData.name}
-                onChange={handleChange}
+              <input type="text" name="name" value={patientData.name} onChange={handleChange}
               />
             ) : (
               <span>{patientData.name}</span>
@@ -80,11 +73,7 @@ const Patient = () => {
           <label>
             Age:
             {editMode ? (
-              <input
-                type="number"
-                name="age"
-                value={patientData.age}
-                onChange={handleChange}
+              <input type="number" name="age" value={patientData.age} onChange={handleChange}
               />
             ) : (
               <span>{patientData.age}</span>
@@ -93,11 +82,7 @@ const Patient = () => {
           <label>
             Phone Number:
             {editMode ? (
-              <input
-                type="tel"
-                name="phoneNumber"
-                value={patientData.phoneNumber}
-                onChange={handleChange}
+              <input type="tel" name="phoneNumber" value={patientData.phoneNumber} onChange={handleChange}
               />
             ) : (
               <span>{patientData.phoneNumber}</span>
@@ -106,11 +91,7 @@ const Patient = () => {
           <label>
             Email:
             {editMode ? (
-              <input
-                type="email"
-                name="email"
-                value={patientData.email}
-                onChange={handleChange}
+              <input type="email" name="email" value={patientData.email} onChange={handleChange}
               />
             ) : (
               <span>{patientData.email}</span>
@@ -119,11 +100,7 @@ const Patient = () => {
           <label>
             Guardian Name:
             {editMode ? (
-              <input
-                type="text"
-                name="name"
-                value={patientData.guardian.name}
-                onChange={handleGuardianChange}
+              <input type="text" name="name" value={patientData.guardian.name} onChange={handleGuardianChange}
               />
             ) : (
               <span>{patientData.guardian.name}</span>
@@ -132,11 +109,7 @@ const Patient = () => {
           <label>
             Guardian Phone Number:
             {editMode ? (
-              <input
-                type="tel"
-                name="phoneNumber"
-                value={patientData.guardian.phoneNumber}
-                onChange={handleGuardianChange}
+              <input type="tel" name="phoneNumber" value={patientData.guardian.phoneNumber} onChange={handleGuardianChange}
               />
             ) : (
               <span>{patientData.guardian.phoneNumber}</span>

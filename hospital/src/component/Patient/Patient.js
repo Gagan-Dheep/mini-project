@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
+import { FaRegEdit } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import "./patient.css";
 const Patient = () => {
   const [close, setClose] = useState(false);
@@ -58,9 +60,10 @@ const Patient = () => {
   return (
     <>
       {close ? (
+        <div className="pcontainer">
         <div className="patprofile">
-          <button className="close-btn" onClick={() => setClose(false)}>Close
-          </button>
+          {/* <button className="close-btn" onClick={() => setClose(false)}>Close</button> */}
+          <IoMdClose className="close-btn" onClick={() => setClose(false)}/> 
           <label>
             Patient Name:
             {editMode ? (
@@ -116,17 +119,18 @@ const Patient = () => {
             )}
           </label>
           {editMode ? (
-            <button onClick={handleSave}>Save</button>
+            <button onClick={handleSave} className="sbtn">Save</button>
           ) : (
-            <button onClick={handleEdit}>Edit</button>
+            <FaRegEdit onClick={handleEdit} className="editbtn"/>
           )}
+        </div>
         </div>
       ) : null}
       <div className="p_profile">
         <p>
           <CgProfile />
         </p>
-        <button onClick={() => view()}>PROFILE</button>
+        <button onClick={() => view()} >PROFILE</button>
       </div>
 
       <div className="p_appointment"></div>

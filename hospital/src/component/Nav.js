@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/nav.css'
-import {BsBagCheck} from 'react-icons/bs';
+// import {BsBagCheck} from 'react-icons/bs';
 import {Link} from 'react-router-dom'
 const Nav = () => {
   return (

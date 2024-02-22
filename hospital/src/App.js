@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Nav from "./component/Nav";
 import Signup from "./component/Signup";
-import Admin from "./Admin";
+import Admin from './component/Admin/Admin'
 import Doctor from "./component/Doctor/Doctor";
+import Patient from "./component/Patient/Patient";
 function App() {
   return (
     <>
@@ -15,7 +16,7 @@ function App() {
             <Route path="/register" element={<Signup />} />
             <Route path="/admin" element={<Admin/>}></Route>
             <Route path="/doctor" element={<Doctor/>}></Route>
-
+            <Route path="/patient" element={<Patient/>}></Route>
           </Routes>
       </BrowserRouter>
     </>

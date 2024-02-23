@@ -2,7 +2,7 @@ const express = require('express');
 // const connection = require('./server')
 const mysql = require('mysql')
 const cors = require('cors')
-
+ 
 const app = express();
 const port = 3002;
 
@@ -37,17 +37,52 @@ app.post('/api/signup', (req, res) => {
     return res.status(500);
   }
   else{
+    connection.query('SELECT * FROM login WHERE username = ? OR email = ?', [username, email], async (err, result) => {
+      if (err) {
+          throw err;
+      }
+      if (result[0])
+      return res.status(500).json({ status: "error", error: "Username or email already present" })
+    else{
     connection.query('INSERT INTO login (username, email, password) VALUES (?, ?, ?)', [username, email, password], async(error, result) => {
       if (error) 
         throw error;
       
+    
       else{
-        return res.statusCode(201);
+        return res.status(200).json({ status: "success", error: "Username have successfully signed up" });
       }
-
     })
   }
+    })
+  
+  }
 })
+
+app.post('/api/login', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  
+  if (!email || !password) {
+    return res.status(500);
+  }
+  else{
+  connection.query('SELECT * FROM login WHERE email = ?', [email], async(error, result) => {
+    if (error) throw error;
+
+    if (result.length > 0) {
+      const user = result[0];
+
+      if (password === user.password) {
+        return res.status(200).json({ status: "success", success: "User logged in successfully"});
+      }}
+      else{
+        return res.status(500).json({ status: "error", error: "Wrong email or password"});
+      }
+  })
+}
+})
+
 app.listen(port, ()=> {
     console.log(`http://localhost:${port}`);
 })

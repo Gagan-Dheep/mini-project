@@ -83,6 +83,21 @@ app.post('/api/login', (req, res) => {
 }
 })
 
+app.post('/api/contactus', async(req, res) => {
+  const {name, email, message} = req.body;
+  if (!email || !name || !message) {
+    return res.status(500);
+  }
+  else{
+    connection.query('INSERT INTO contactus (name, email, message) VALUES (?, ?, ?)', [name, email, message], async(error, result) => {
+      if (error) throw error;
+      else{
+        return res.status(200).json({ status: "success", success: "User logged in successfully"});
+      }
+    })
+  }
+})
+
 app.listen(port, ()=> {
     console.log(`http://localhost:${port}`);
 })

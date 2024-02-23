@@ -1,8 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import './styles/home.css'
 import Footer from './component/Footer'
+
 const Home = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+
+  const handleContactUs = async (e) => {
+    e.preventDefault();
+      try {
+        const response = await fetch(`http://localhost:3002/api/contactus`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                email,
+                message,
+            })
+        });
+
+        if (response.ok) {
+            
+        } 
+        else if (response.ok) {
+            
+        } 
+        else {
+            const errorData = await response.json();
+            setErrorMessage(errorData.message);
+        }
+    } catch (error) {
+        console.error('Error during signup/login:', error);
+        setErrorMessage('An error occurred, please try again.');
+    }
+  } 
   return (
     <>
    <div className='home'>
@@ -39,18 +74,18 @@ const Home = () => {
       </div>
 
       <div class='contact-form'>
-          <form action='#' method='post'>
+          <form action={handleContactUs} method='post'>
             <div class='form-group'>
               <label for='name'>Name:</label>
-              <input type='text' id='name' name='name' required></input>
+              <input type='text' id='name' name='name' value={name} onChange={(e) => setName(e.target.value)} required></input>
             </div>
             <div class='form-group'>
               <label for='email'>Email:</label>
-              <input type='email' id='email' name='email' required></input>
+              <input type='email' id='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} required></input>
             </div>
             <div class='form-group'>
               <label for='message'>Message:</label>
-              <textarea id='message' name='message' rows='4' required></textarea>
+              <textarea id='message' name='message' value={message} onChange={(e) => setMessage(e.target.value)} rows='4' required></textarea>
             </div>
             <div class='form-group'>
               <button type='submit'>Send Message</button>
@@ -59,6 +94,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+
 
 <Footer/>
     </>

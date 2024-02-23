@@ -28,13 +28,13 @@ app.use(cors());
 app.use(express.json());
 
 
-app.post('/api/signup', (res, req) => { 
+app.post('/api/signup', (req, res) => { 
   console.log(req.body);
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
   if (!username || !email || !password) {
-    return res.statusCode(500);
+    return res.status(500);
   }
   else{
     connection.query('INSERT INTO login (username, email, password) VALUES (?, ?, ?)', [username, email, password], async(error, result) => {
@@ -44,7 +44,7 @@ app.post('/api/signup', (res, req) => {
       else{
         return res.statusCode(201);
       }
-   
+
     })
   }
 })

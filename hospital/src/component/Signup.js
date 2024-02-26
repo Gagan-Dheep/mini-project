@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import '../styles/Signup.css';
 import { FaRegUserCircle } from 'react-icons/fa';
@@ -10,6 +9,7 @@ export default function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [userType, setUserType] = useState('patient'); 
     const [errorMessage, setErrorMessage] = useState('');
 
     let navigate = useNavigate();
@@ -17,10 +17,10 @@ export default function Signup() {
 
     const clearInput = async (e) => {
         e.preventDefault();
-        setEmail('')
-        setPassword('')
-        setUsername('')
-    }
+        setEmail('');
+        setPassword('');
+        setUsername('');
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,22 +33,21 @@ export default function Signup() {
                     email,
                     password,
                     username,
-                })
+                    userType, // Include userType in the request body
+                }),
             });
 
-            if (response.ok && action == 'signup') {
+            if (response.ok && action === 'signup') {
                 // Handle successful signup/login (e.g., redirect, set authentication state)
                 // console.log('User signed up/logged in successfully!');
                 // setTimeout(() => navigate('/signup'), 1000);
-                setAction('login')
-            } 
-            else if (response.ok && action == 'login') {
+                setAction('login');
+            } else if (response.ok && action === 'login') {
                 // Handle successful signup/login (e.g., redirect, set authentication state)
                 // console.log('User signed up/logged in successfully!');
                 setTimeout(() => navigate('/'), 1000);
                 // setAction('login')
-            } 
-            else {
+            } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message);
             }
@@ -79,11 +78,16 @@ export default function Signup() {
                     <RiLockPasswordFill />
                     <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
+                <div className="select">
+                <label for='role'>Role :</label>
+                    <select value={userType} id='role' onChange={(e) => setUserType(e.target.value)}>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+                </div>
                 <div className="submit-container">
-
-                    <div className={action === 'signup' ? 'submit' : 'submit gray'} onClick={(e) => action === 'signup' ? handleSubmit(e) && clearInput(e): setAction('signup') && clearInput(e)}>Signup</div>
-                    <div className={action === 'login' ? 'submit' : 'submit gray'} onClick={(e) => action === 'login' ? handleSubmit(e) && clearInput(e): setAction('login') && clearInput(e)}>Login</div>
-
+                    <div className={action === 'signup' ? 'submit' : 'submit gray'} onClick={(e) => action === 'signup' ? handleSubmit(e) && clearInput(e) : setAction('signup') && clearInput(e)}>Signup</div>
+                    <div className={action === 'login' ? 'submit' : 'submit gray'} onClick={(e) => action === 'login' ? handleSubmit(e) && clearInput(e) : setAction('login') && clearInput(e)}>Login</div>
                 </div>
             </div>
         </div>

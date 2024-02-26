@@ -81,10 +81,11 @@ app.post('/api/login', (req, res) => {
       }
   })
 }
-})
+}) 
 
 app.post('/api/contactus', async(req, res) => {
   const {name, email, message} = req.body;
+  console.log(req.body)
   if (!email || !name || !message) {
     return res.status(500);
   }

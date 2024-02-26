@@ -9,11 +9,18 @@ const Home = () => {
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const clearInput = async (e) => {
+    e.preventDefault();
+    setEmail('')
+    setMessage('')
+    setName('')
+}
 
   const handleContactUs = async (e) => {
     e.preventDefault();
       try {
-        const response = await fetch(`http://localhost:3002/api/contactus`, {
+        console.log(name, email, message);
+        const response = await fetch('http://localhost:3002/api/contactus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -27,7 +34,7 @@ const Home = () => {
             
         } 
         else if (response.ok) {
-            
+             
         } 
         else {
             const errorData = await response.json();
@@ -74,7 +81,7 @@ const Home = () => {
       </div>
 
       <div class='contact-form'>
-          <form action={handleContactUs} method='post'>
+          <form method='post'>
             <div class='form-group'>
               <label for='name'>Name:</label>
               <input type='text' id='name' name='name' value={name} onChange={(e) => setName(e.target.value)} required></input>
@@ -88,7 +95,7 @@ const Home = () => {
               <textarea id='message' name='message' value={message} onChange={(e) => setMessage(e.target.value)} rows='4' required></textarea>
             </div>
             <div class='form-group'>
-              <button type='submit'>Send Message</button>
+              <button type='submit' onClick={(e) => handleContactUs(e) && clearInput(e)}>Send Message</button>
             </div>
           </form>
         </div>

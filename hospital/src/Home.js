@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './styles/home.css'
 import Footer from './component/Footer'
@@ -8,6 +8,22 @@ const Home = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    try {
+      const response = fetch('http://localhost:3002', {
+        
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      
+    }
+    catch(err) {
+      console.log(err);
+    }
+  })
 
   const clearInput = async (e) => {
     e.preventDefault();

@@ -48,8 +48,8 @@ export default function Signup() {
                 // console.log('User signed up/logged in successfully!');
                 // setTimeout(() => navigate('/'), 1000);
                 // setAction('login')
-                sessionStorage.setItem('userEmail',email)
-                sessionStorage.setItem('userType',userType)
+                // sessionStorage.setItem('userEmail',email)
+                // sessionStorage.setItem('userType',userType)
 
             } else {
                 const errorData = await response.json();

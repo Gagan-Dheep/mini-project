@@ -29,14 +29,15 @@ app.use(express.json());
 
 
 app.post('/api/signup', (req, res) => { 
-  console.log(req.body);
+  // console.log(req.body);
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
-  if (!username || !email || !password) {
+  const role = req.body.userType;
+  if (!username || !email || !password || !role) {
     return res.status(500);
   }
-  else{
+  else{ 
     connection.query('SELECT * FROM login WHERE username = ? OR email = ?', [username, email], async (err, result) => {
       if (err) {
           throw err;
@@ -44,13 +45,13 @@ app.post('/api/signup', (req, res) => {
       if (result[0])
       return res.status(500).json({ status: "error", error: "Username or email already present" })
     else{
-    connection.query('INSERT INTO login (username, email, password) VALUES (?, ?, ?)', [username, email, password], async(error, result) => {
+    connection.query('INSERT INTO login (username, email, password, role) VALUES (?, ?, ?, ?)', [username, email, password, role], async(error, result) => {
       if (error) 
         throw error;
       
     
       else{
-        return res.status(200).json({ status: "success", error: "Username have successfully signed up" });
+        return res.status(200).json({ status: "success", success: "Username have successfully signed up" });
       }
     })
   }
@@ -62,20 +63,25 @@ app.post('/api/signup', (req, res) => {
 app.post('/api/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  
-  if (!email || !password) {
+  const role = req.body.role;
+  console.log(req.body);
+  if (!email || !password || !role) {
     return res.status(500);
   }
   else{
   connection.query('SELECT * FROM login WHERE email = ?', [email], async(error, result) => {
     if (error) throw error;
-
+ 
     if (result.length > 0) {
       const user = result[0];
-
+ 
       if (password === user.password) {
-        return res.status(200).json({ status: "success", success: "User logged in successfully"});
-      }}
+        connection.query('SELECT role FROM login WHERE email = ?', [email], async(err, resu) => {
+          const userRole = resu.role;
+          return res.status(200).json({ status: "success", success: "User logged in successfully", role: userRole});
+        })
+        
+      }}  
       else{
         return res.status(500).json({ status: "error", error: "Wrong email or password"});
       }

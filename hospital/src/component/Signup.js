@@ -11,6 +11,7 @@ export default function Signup() {
     const [username, setUsername] = useState('');
     const [userType, setUserType] = useState('patient'); 
     const [errorMessage, setErrorMessage] = useState('');
+    const [value, setValue] = useState('');
 
     let navigate = useNavigate();
     const [action, setAction] = useState('signup');
@@ -32,8 +33,8 @@ export default function Signup() {
                 body: JSON.stringify({
                     email,
                     password,
-                    username,
-                    userType, // Include userType in the request body
+                    username, 
+                    userType
                 }),
             });
 
@@ -41,12 +42,15 @@ export default function Signup() {
                 // Handle successful signup/login (e.g., redirect, set authentication state)
                 // console.log('User signed up/logged in successfully!');
                 // setTimeout(() => navigate('/signup'), 1000);
-                setAction('login');
+                setAction('login'); 
             } else if (response.ok && action === 'login') {
                 // Handle successful signup/login (e.g., redirect, set authentication state)
                 // console.log('User signed up/logged in successfully!');
-                setTimeout(() => navigate('/'), 1000);
+                // setTimeout(() => navigate('/'), 1000);
                 // setAction('login')
+                sessionStorage.setItem('userEmail',email)
+                sessionStorage.setItem('userType',userType)
+
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message);

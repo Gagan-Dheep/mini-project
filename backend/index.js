@@ -70,7 +70,7 @@ function verifyToken(req, res, next) {
   jwt.verify(token, "gagan", (err, data) => {
     if (!err) {
       next(); 
-    }
+    } 
     else {
       return res.status(401).send({message: "Invalid Token"});
 
@@ -78,6 +78,24 @@ function verifyToken(req, res, next) {
   })
   // console.log("coming from midd"); 
 }
+
+app.post('/api/patient/guardian', (req, res) => {
+  const {pname, page, pphone, pemail, pguardianName, pguardianNumber} = req.body;
+  // console.log(req.body);
+  if (!pname || !page || !pphone || !pemail || !pguardianName || !pguardianNumber) {
+    return res.status(500);
+  }
+  else{
+    connection.query('INSERT INTO patientdetails (name, age, phone, email, guardian_name, g_phone) VALUES (?, ?, ?, ?, ?, ?)', [pname, page, pphone, pemail, pguardianName, pguardianNumber], async(error, result) => {
+      if (error) {
+        throw error;
+      }
+      else{
+        return res.status(200).json({ status: "success", success: "Data udated successfully" });
+      }
+    })
+  }
+})
 
 app.post('/api/signup', (req, res) => { 
   // console.log(req.body);
@@ -140,7 +158,7 @@ app.post('/api/login', (req, res) => {
             // req.session.username = resu[0].username;
             // console.log(req.session.username);
             jwt.sign({Useremail: email}, 'gagan', (error, token) => {
-              if (!error) {
+              if (!error) { 
                 res.cookie("refreshToken",token,{
                   httpOnly:true,
                   maxAge:24*60*60*1000,

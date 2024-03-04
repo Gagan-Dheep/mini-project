@@ -196,6 +196,7 @@ const Patient = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [patientData, setPatientData] = useState({
     name: "",
     age: "",
@@ -244,6 +245,44 @@ const Patient = () => {
       },
     });
   };
+
+  const handleSaveBackend = async(e) => {
+    console.log("yeh");
+    e.preventDefault();
+    let pname = patientData.name;
+    let page = patientData.age;
+    let pphone = patientData.phoneNumber;
+    let pemail = patientData.email;
+    let pguardianName = patientData.guardian.name;
+    let pguardianNumber = patientData.guardian.phoneNumber;
+
+        try {
+            const response = await fetch(`http://localhost:3002/api/patient/guardian`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    pname,
+                    page,
+                    pphone,
+                    pemail,
+                    pguardianName,
+                    pguardianNumber
+                }),
+                credentials: 'include'
+            });
+
+            if (response.ok){
+
+            }
+            else {
+                const errorData = await response.json();
+                setErrorMessage(errorData.message);
+            }
+        } catch (error) {
+            console.error('Error during signup/login:', error);
+            setErrorMessage('An error occurred, please try again.');
+        }
+  }
 
   const doctors = [
     {
@@ -318,7 +357,7 @@ const Patient = () => {
               )}
             </label>
             {editMode ? (
-              <button onClick={handleSave} className="sbtn">
+              <button onClick={handleSave && handleSaveBackend} className="sbtn">
                 Save
               </button>
             ) : (

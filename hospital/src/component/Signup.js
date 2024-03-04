@@ -45,32 +45,32 @@ export default function Signup() {
                 // setTimeout(() => navigate('/signup'), 1000);
                 setAction('login'); 
             } else if (response.ok && action === 'login') {
-                if (!response.status === 402) {
+                // if (!response.status === 402) {
                     
                 
-                // Handle successful signup/login (e.g., redirect, set authentication state)
-                // console.log('User signed up/logged in successfully!');
-                // setTimeout(() => navigate('/'), 1000);
-                // setAction('login')
-                // sessionStorage.setItem('userEmail',email)
-                // sessionStorage.setItem('userType',userType)
+                // // Handle successful signup/login (e.g., redirect, set authentication state)
+                // // console.log('User signed up/logged in successfully!');
+                // // setTimeout(() => navigate('/'), 1000);
+                // // setAction('login')
+                // // sessionStorage.setItem('userEmail',email)
+                // // sessionStorage.setItem('userType',userType)
                 
-                const data = await response.json();
-                // console.log(data);
-                const token = data.token;
-                console.log(token);
-                if (!token) {
-                    throw new Error('No token received from server');
-                  }
+                // const data = await response.json();
+                // // console.log(data);
+                // const token = data.token;
+                // console.log(token);
+                // if (!token) {
+                //     throw new Error('No token received from server');
+                //   }
                 
-                  // Set cookie securely and with appropriate options
-                //   document.cookie = `jwt=${token}; HttpOnly; Secure; SameSite=Lax; Path=/`;
-                //   console.log(document.cookie);
+                //   // Set cookie securely and with appropriate options
+                // //   document.cookie = `jwt=${token}; HttpOnly; Secure; SameSite=Lax; Path=/`;
+                // //   console.log(document.cookie);
                 
-                    setTimeout(() => navigate('/'), 1000);}
-                    else{
-                        console.log("invalid access");
-                    }
+                //     setTimeout(() => navigate('/'), 1000);}
+                //     else{
+                //         console.log("invalid access");
+                //     }
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message);

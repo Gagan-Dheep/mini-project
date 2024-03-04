@@ -3,6 +3,19 @@ import '../styles/nav.css'
 // import {BsBagCheck} from 'react-icons/bs';
 import {Link} from 'react-router-dom'
 const Nav = () => {
+    const Logout = async () => {
+    const response = await fetch(`http://localhost:3002/api/logout`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // body: JSON.stringify({
+                //     email,
+                //     password,
+                //     username, 
+                //     userType
+                // }),
+                credentials: 'include'
+            });
+        }
   return (
     <>
     <div className='main-header'>
@@ -30,6 +43,9 @@ const Nav = () => {
                             </li>
                             <li>
                                 <Link to='/register' className='link'>Sign-In/Up</Link>
+                            </li>
+                            <li>
+                                <button onClick={() => Logout()} className='link'>logout</button>
                             </li>
                         </ul>
                     </div>

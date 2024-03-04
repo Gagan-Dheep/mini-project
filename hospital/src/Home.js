@@ -9,21 +9,21 @@ const Home = () => {
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    try {
-      const response = fetch('http://localhost:3002', {
-        
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => {
-        console.log(res.data);
-      })
+  // useEffect(() => {
+  //   try {
+  //     const response = fetch('http://localhost:3002', {
+
+  //       headers: { 'Content-Type': 'application/json' }
+  //     })
+  //     .then(res => {
+  //       console.log(res.data);
+  //     })
       
-    }
-    catch(err) {
-      console.log(err);
-    }
-  })
+  //   }
+  //   catch(err) {
+  //     console.log(err);
+  //   }
+  // })
 
   const clearInput = async (e) => {
     e.preventDefault();

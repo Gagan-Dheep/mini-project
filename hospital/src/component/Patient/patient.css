@@ -1,4 +1,9 @@
-
+.pat_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2%;
+}
 .pcontainer{
   position: fixed;
   z-index: 1;
@@ -47,7 +52,7 @@
     font-size: 16px;
     margin-top: 10px;
   }
-  .p_profile {
+  .p_profile ,.p_appointment{
     display: flex;
     width: 200px;
     margin-top: 8px;
@@ -59,12 +64,12 @@
     margin-bottom: 20px;
   }
   
-  .p_profile p {
+  .p_profile,.p_appointment p {
     font-size: 48px;
     color: yellow;
   }
   
-  .p_profile button {
+  .patientbtn {
     background-color: #091243;
     color: #fff;
     padding: 10px 20px;

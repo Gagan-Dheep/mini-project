@@ -61,7 +61,7 @@ const Admin = () => {
           value={newPatientName}
           onChange={(e) => setNewPatientName(e.target.value)}
         />
-        <button onClick={() => addPatient(newPatientName)}>Add Patient</button>
+        <button className="adminbtn" onClick={() => addPatient(newPatientName)}>Add Patient</button>
         <table>
           <thead>
             <tr>
@@ -74,7 +74,7 @@ const Admin = () => {
               <tr key={index}>
                 <td>{patient}</td>
                 <td>
-                  <button onClick={() => removePatient(index)}>Remove</button>
+                  <button className="adminrem" onClick={() => removePatient(index)}>Remove</button>
                 </td>
               </tr>
             ))}
@@ -96,7 +96,7 @@ const Admin = () => {
             value={newDoctorSpecialization}
             onChange={(e) => setNewDoctorSpecialization(e.target.value)}
           />
-          <button onClick={addDoctor}>Add Doctor</button>
+          <button className="adminbtn" onClick={addDoctor}>Add Doctor</button>
         </div>
         <table>
           <thead>
@@ -112,7 +112,7 @@ const Admin = () => {
                 <td>{doctor.name}</td>
                 <td>{doctor.specialization}</td>
                 <td>
-                  <button onClick={() => removeDoctor(index)}>Remove</button>
+                  <button className="adminrem" onClick={() => removeDoctor(index)}>Remove</button>
                 </td>
               </tr>
             ))}

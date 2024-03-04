@@ -23,7 +23,7 @@
     border: 1px solid #ccc;
   }
   
-  button {
+  .adminbtn {
     padding: 10px 20px;
     background-color: yellow;
     color:  #091243;
@@ -58,7 +58,7 @@
     text-align: center;
   }
   
-  td:last-child button {
+   .adminrem {
     padding: 6px 12px;
     background-color: #dc3545;
   }

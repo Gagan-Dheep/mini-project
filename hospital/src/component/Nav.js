@@ -45,7 +45,7 @@ const Nav = () => {
                                 <Link to='/register' className='link'>Sign-In/Up</Link>
                             </li>
                             <li>
-                                <button onClick={() => Logout()} className='link'>logout</button>
+                                <button onClick={() => Logout()} className='logoutbtn'>logout</button>
                             </li>
                         </ul>
                     </div>

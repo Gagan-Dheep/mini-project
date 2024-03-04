@@ -48,6 +48,15 @@
     font-size: 18px;
     color: yellow;
 }
+.main-header .container .header .container .nav ul li .logoutbtn{
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 18px;
+    background:#091243;
+    border: none;
+    cursor: pointer;
+    color: yellow;
+}
 .main-header .container .header .container .nav ul li .link:hover{
     font-size: 20px;
     text-decoration: underline;

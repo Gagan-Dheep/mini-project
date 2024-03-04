@@ -190,6 +190,7 @@ import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { FaAddressBook } from "react-icons/fa";
 import "./patient.css";
 
 const Patient = () => {
@@ -352,18 +353,20 @@ const Patient = () => {
           ))}
         </div>
       )}
-
-      <div className="p_profile">
+<div className="pat_container">
+<div className="p_profile">
         <p>
           <CgProfile />
         </p>
-        <button onClick={() => setProfileOpen(true)}>PROFILE</button>
+        <button className="patientbtn" onClick={() => setProfileOpen(true)}>PROFILE</button>
       </div>
 
       <div className="p_appointment">
-        <p>appointment</p>
-        <button onClick={() => setAppointmentOpen(true)}>appointment</button>
+       <p><FaAddressBook /></p>
+        <button  className="patientbtn" onClick={() => setAppointmentOpen(true)}>appointment</button>
       </div>
+</div>
+      
     </>
   );
 };

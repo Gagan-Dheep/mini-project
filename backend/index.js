@@ -56,17 +56,17 @@ app.use(bodyParser.json())
 //   }
 // })
 
-app.get('/', verifyToken, (req, res) => {
-  console.log("all goodd");
-  res.send({message: "good"});
-})
+// app.get('/', verifyToken, (req, res) => {
+//   console.log("all goodd");
+//   res.send({message: "good"});
+// })
 
 function verifyToken(req, res, next) { 
   // let token = req.headers.authorization.split(" ")[1];
   // console.log(req.headers.authorization.split(" ")[1]);
-  console.log("hhh");
-  let token = req.signedCookies.jwt;
-  console.log(token);
+  // console.log("hhh");
+  let token = req.cookies.refreshToken;
+  // console.log(token);
   jwt.verify(token, "gagan", (err, data) => {
     if (!err) {
       next(); 
@@ -79,7 +79,20 @@ function verifyToken(req, res, next) {
   // console.log("coming from midd"); 
 }
 
-app.post('/api/patient/guardian', (req, res) => {
+app.get('/patient/details', verifyToken, (req, res) => {
+  // return res.send("hhhhh");
+  const role = "doctor";
+  connection.query('SELECT *  FROM login where role = ?', [role], (err, result) => {
+    if (err) {
+      throw err;
+    }
+    else{
+      return res.json({data: result});
+    }
+  })
+})
+
+app.post('/api/patient/guardian', verifyToken, (req, res) => {
   const {pname, page, pphone, pemail, pguardianName, pguardianNumber} = req.body;
   // console.log(req.body);
   if (!pname || !page || !pphone || !pemail || !pguardianName || !pguardianNumber) {

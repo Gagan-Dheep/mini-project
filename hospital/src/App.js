@@ -8,16 +8,17 @@ import Admin from './component/Admin/Admin'
 import Doctor from "./component/Doctor/Doctor";
 import Patient from "./component/Patient/Patient";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const token = localStorage.getItem('refreshToken');
-    console.log(token, "wo");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  //   const token = localStorage.getItem('refreshToken');
+  //   console.log(token, "wo");
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
+ 
   return (
     <>
       <BrowserRouter>

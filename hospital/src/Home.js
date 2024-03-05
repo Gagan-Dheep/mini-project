@@ -43,7 +43,8 @@ const Home = () => {
                 name,
                 email,
                 message,
-            })
+            }),
+            credentials: 'include'
         });
 
         if (response.ok) {

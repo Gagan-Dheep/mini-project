@@ -186,7 +186,7 @@
 // export default Patient;
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -198,6 +198,7 @@ const Patient = () => {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [doctors, setDoctors] = useState([]);
   const [patientData, setPatientData] = useState({
     name: "",
     age: "",
@@ -208,6 +209,37 @@ const Patient = () => {
       phoneNumber: "",
     },
   });
+   
+  // useEffect(()=> {
+     const DoctorDetails = async(e) => {
+      // console.log("DoctorDetai");
+      e.preventDefault();
+    try{
+      const response = await fetch('http://localhost:3002/patient/details', {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      })
+      
+      if (!response.ok) {
+        throw new Error("some error");
+      }
+      const data = await response.json();
+      // console.log(data.data[0].username);
+      setDoctors(data.data);
+      // console.log(doctors);
+      // console.log(doctors);
+    //   .then((response) => {
+    //     console.log(response.data);
+    // })
+    }
+    catch(err) {
+      console.log(err);
+      throw err;
+    }
+  }
+  // DoctorDetails();
+  // }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -247,6 +279,23 @@ const Patient = () => {
     });
   };
 
+  // const DoctorDetails = async(e) => {
+  //   try{
+  //     const response = await fetch('http://localhost:3000/patient', {
+  //       method: 'get',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       credentials: 'include'
+  //     })
+  //     .then(data => {
+  //       console.log(data, "aniur");
+  //     })
+  //   }
+  //   catch(err) {
+  //     console.log(err);
+  //     throw err;
+  //   }
+  // }
+
   const handleSaveBackend = async(e) => {
     console.log("yeh");
     e.preventDefault();
@@ -285,18 +334,18 @@ const Patient = () => {
         }
   }
 
-  const doctors = [
-    {
-      name: "Dr. John Doe",
-      specification: "Cardiologist",
-      timing: "9:00 AM - 5:00 PM",
-    },
-    {
-      name: "Dr. Jane Smith",
-      specification: "Dermatologist",
-      timing: "10:00 AM - 6:00 PM",
-    },
-  ];
+  // const doctors = [
+  //   {
+  //     name: "Dr. John Doe",
+  //     specification: "Cardiologist",
+  //     timing: "9:00 AM - 5:00 PM",
+  //   },
+  //   {
+  //     name: "Dr. Jane Smith",
+  //     specification: "Dermatologist",
+  //     timing: "10:00 AM - 6:00 PM",
+  //   },
+  // ];
 
   return (
     <>
@@ -371,19 +420,20 @@ const Patient = () => {
       {appointmentOpen && (
         <div className="apt_details">
           <IoMdClose className="close-btn" onClick={() => setAppointmentOpen(false)} />
+          {/* {console.log(doctors)} */}
           {doctors.map((doctor, index) => (
             <div key={index} className="doctor">
               <label>
                 Doctor Name:
-                <span>{doctor.name}</span>
+                <span>{doctor.slno}</span>
               </label>
               <label>
                 Specification:
-                <span>{doctor.specification}</span>
+                <span>{doctor.username}</span>
               </label>
               <label>
                 Timing:
-                <span>{doctor.timing}</span>
+                <span>{doctor.email}</span>
               </label>
               <button className="appointment-btn" onClick={() => console.log("Appointment button clicked")}>
                 Make Appointment
@@ -402,7 +452,8 @@ const Patient = () => {
 
       <div className="p_appointment">
        <p><FaAddressBook /></p>
-        <button  className="patientbtn" onClick={() => setAppointmentOpen(true)}>appointment</button>
+      
+        <button  className="patientbtn" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>appointment</button>
       </div>
 </div>
       

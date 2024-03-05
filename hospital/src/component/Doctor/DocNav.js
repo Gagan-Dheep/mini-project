@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/nav.css'
+// import '../styles/nav.css'
 // import {BsBagCheck} from 'react-icons/bs';
 import {Link} from 'react-router-dom'
 const DocNav = () => {
@@ -16,6 +16,7 @@ const DocNav = () => {
                 credentials: 'include'
             });
         }
+        
   return (
     <>
     <div className='main-header'>

@@ -1,104 +1,360 @@
-import React from 'react'
-import './forDoctor.css'
-import Avatar from '@mui/material/Avatar';
-import DocNav from './DocNav'
+// import React, { useState, useEffect } from "react";
+// import { CgProfile } from "react-icons/cg";
+// import { FaRegEdit } from "react-icons/fa";
+// import { IoMdClose } from "react-icons/io";
+// import { FaAddressBook } from "react-icons/fa";
+// import "../Patient/patient.css";
+// import DocNav from './DocNav'
 
+// const Doctor = () => {
+//   const [profileOpen, setProfileOpen] = useState(false);
+//   const [appointmentOpen, setAppointmentOpen] = useState(false);
+//   const [editMode, setEditMode] = useState(false);
+//   const [errorMessage, setErrorMessage] = useState('');
+//   const [doctors, setDoctors] = useState([]);
+//   const [appointments, setAppointments] = useState([]);
+//   const [DoctorData, setDoctorData] = useState({
+//     name: "",
+//     age: "",
+//     phoneNumber: "",
+//     email: "",
+//     specification: ""
+//   });
 
-export default function Doctor() {
+//   useEffect(() => {
+//     const fetchDoctors = async () => {
+//       try {
+//         const response = await fetch('http://localhost:3002/doctors');
+//         if (!response.ok) {
+//           throw new Error('Failed to fetch doctors');
+//         }
+//         const data = await response.json();
+//         setDoctors(data);
+//       } catch (error) {
+//         console.error('Error fetching doctors:', error);
+//       }
+//     };
+
+//     const fetchAppointments = async () => {
+//       try {
+//         const response = await fetch('http://localhost:3002/appointments');
+//         if (!response.ok) {
+//           throw new Error('Failed to fetch appointments');
+//         }
+//         const data = await response.json();
+//         setAppointments(data);
+//       } catch (error) {
+//         console.error('Error fetching appointments:', error);
+//       }
+//     };
+
+//     fetchDoctors();
+//     fetchAppointments();
+//   }, []);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setDoctorData({
+//       ...DoctorData,
+//       [name]: value,
+//     });
+//   };
+
+//   const handleSave = () => {
+//     console.log(DoctorData);
+//     setEditMode(false);
+//     // Code for saving doctor data goes here
+//   };
+//   return (
+//     <>
+//       <DocNav/>
+//       {profileOpen && (
+//         <div className="pcontainer">
+//           <div className="patprofile">
+//             <IoMdClose className="close-btn" onClick={() => setProfileOpen(false)} />
+//             <label>
+//               Doctor Name:
+//               {editMode ? (
+//                 <input type="text" name="name" value={DoctorData.name} onChange={handleChange} />
+//               ) : (
+//                 <span>{DoctorData.name}</span>
+//               )}
+//             </label>
+//             <label>
+//               Age:
+//               {editMode ? (
+//                 <input type="number" name="age" value={DoctorData.age} onChange={handleChange} />
+//               ) : (
+//                 <span>{DoctorData.age}</span>
+//               )}
+//             </label>
+//             <label>
+//               Phone Number:
+//               {editMode ? (
+//                 <input type="tel" name="phoneNumber" value={DoctorData.phoneNumber} onChange={handleChange} />
+//               ) : (
+//                 <span>{DoctorData.phoneNumber}</span>
+//               )}
+//             </label>
+//             <label>
+//               Email:
+//               {editMode ? (
+//                 <input type="email" name="email" value={DoctorData.email} onChange={handleChange} />
+//               ) : (
+//                 <span>{DoctorData.email}</span>
+//               )}
+//             </label>
+//             <label>
+//               Specification:
+//               {editMode ? (
+//                 <input type="text" name="specification" value={DoctorData.specification} onChange={handleChange} />
+//               ) : (
+//                 <span>{DoctorData.specification}</span>
+//               )}
+//             </label>
+
+//           </div>
+//         </div>
+//       )}
+
+//       {appointmentOpen && (
+//         <div className="apt_details">
+//           <IoMdClose className="close-btn" onClick={() => setAppointmentOpen(false)} />
+//           {/* Display appointments */}
+//           {appointments.map((appointment, index) => (
+//             <div key={index} className="appointment">
+//               <label>
+//                 Patient Name:
+//                 <span>{appointment.patientName}</span>
+//               </label>
+//               <label>
+//                 Doctor Name:
+//                 <span>{appointment.doctorName}</span>
+//               </label>
+//               {/* Add more fields if needed */}
+//             </div>
+//           ))}
+//         </div>
+//       )}
+
+//       <div className="pat_container">
+//         <div className="p_profile">
+//           <p>
+//             <CgProfile />
+//           </p>
+//           <button className="patientbtn" onClick={() => setProfileOpen(true)}>PROFILE</button>
+//         </div>
+
+//         <div className="p_appointment">
+//           <p><FaAddressBook /></p>
+//           <button className="patientbtn" onClick={() => setAppointmentOpen(true)}>Appointments</button>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Doctor;
+
+import React, { useState, useEffect } from "react";
+import { CgProfile } from "react-icons/cg";
+import { FaRegEdit } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { FaAddressBook } from "react-icons/fa";
+import "../Patient/patient.css";
+import DocNav from "./DocNav";
+
+const Doctor = () => {
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [doctors, setDoctors] = useState([]);
+  const [appointments, setAppointments] = useState([]);
+  const [DoctorData, setDoctorData] = useState({
+    name: "",
+    age: "",
+    phoneNumber: "",
+    email: "",
+    specification: "",
+  });
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch("http://localhost:3002/doctors");
+        if (!response.ok) {
+          throw new Error("Failed to fetch doctors");
+        }
+        const data = await response.json();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      }
+    };
+
+    const fetchAppointments = async () => {
+      try {
+        const response = await fetch("http://localhost:3002/appointments");
+        if (!response.ok) {
+          throw new Error("Failed to fetch appointments");
+        }
+        const data = await response.json();
+        setAppointments(data);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    };
+
+    fetchDoctors();
+    fetchAppointments();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDoctorData({
+      ...DoctorData,
+      [name]: value,
+    });
+  };
+
+  const handleSave = () => {
+    console.log(DoctorData);
+    setEditMode(false);
+    // Code for saving doctor data goes here
+  };
+
   return (
     <>
-    <DocNav/>
-    <div className='doctor'>
-      <div className="container">
-        <div className="avatar">
-        <Avatar
-            alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
-            sx={{ width: 90, height: 90 }}/>
-            <div className="avatar-details">
-            <div className="avatar-name">Joyston</div>
-            <div className="avatar-name">Specialization</div>
-{/* 
-            <div className="avatar-name">The Age</div>
-            <div className="avatar-name">Years of experience</div>
-            <div className="avatar-name">Hospital working in</div> */}
+      <DocNav />
+      {profileOpen && (
+        <div className="pcontainer">
+          <div className="patprofile">
+            <IoMdClose
+              className="close-btn"
+              onClick={() => setProfileOpen(false)}
+            />
+            <label>
+              Doctor Name:
+              {editMode ? (
+                <input
+                  type="text"
+                  name="name"
+                  value={DoctorData.name}
+                  onChange={handleChange}
+                />
+              ) : (
+                <span>{DoctorData.name}</span>
+              )}
+            </label>
+            <label>
+              Age:
+              {editMode ? (
+                <input
+                  type="number"
+                  name="age"
+                  value={DoctorData.age}
+                  onChange={handleChange}
+                />
+              ) : (
+                <span>{DoctorData.age}</span>
+              )}
+            </label>
+            <label>
+              Phone Number:
+              {editMode ? (
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={DoctorData.phoneNumber}
+                  onChange={handleChange}
+                />
+              ) : (
+                <span>{DoctorData.phoneNumber}</span>
+              )}
+            </label>
+            <label>
+              Email:
+              {editMode ? (
+                <input
+                  type="email"
+                  name="email"
+                  value={DoctorData.email}
+                  onChange={handleChange}
+                />
+              ) : (
+                <span>{DoctorData.email}</span>
+              )}
+            </label>
+            <label>
+              Specification:
+              {editMode ? (
+                <input
+                  type="text"
+                  name="specification"
+                  value={DoctorData.specification}
+                  onChange={handleChange}
+                />
+              ) : (
+                <span>{DoctorData.specification}</span>
+              )}
+            </label>
+            {editMode ? (
+              <button onClick={handleSave}>Save</button>
+            ) : (
+              <button onClick={() => setEditMode(true)}>Edit</button>
+            )}
+          </div>
         </div>
+      )}
+
+      {appointmentOpen && (
+        <div className="apt_details">
+          <IoMdClose
+            className="close-btn"
+            onClick={() => setAppointmentOpen(false)}
+          />
+          {/* Display appointments */}
+          {appointments.map((appointment, index) => (
+            <div key={index} className="appointment">
+              <label>
+                Patient Name:
+                <span>{appointment.patientName}</span>
+              </label>
+              <label>
+                Doctor Name:
+                <span>{appointment.doctorName}</span>
+              </label>
+              {/* Add more fields if needed */}
+            </div>
+          ))}
         </div>
-        <div className="p_details">
-            <div className="Personal-details">
-                <h2>Personal details</h2>
-                {/* <input type="text" name="experience" id="experience" placeholder='Enter years of experience'/> */}
-                <div className="usePer">
-                <label htmlFor="age">Doctor's Age : </label>
-                <input type="number" name="age" id="age" placeholder='Enter your age'/>
-                </div>
-                <div className="usePer">
-                <label htmlFor="address">Doctor's Address: </label>
-                <input type="text" name="address" id="address" placeholder='Enter your address'/>
-                </div>
-                <div className="usePer">
-                    <label htmlFor="dealt">Doctor's overall Dealt Patients: </label>
-                <input type="number" name="dealth" id="dealth" placeholder='Enter the number of patients you dealt with'/>
-                </div>
-                <div className="usePer">    
-                <label htmlFor="number">Doctor's Number: </label>
-                <input type="text" name="Number" id="Number" placeholder='Enter your Number'/>
-                </div>
-                <div className="usePer">
-                <label htmlFor="number">Doctor's Email: </label>
-                <input type="text" name="Email" id="Email" placeholder='Enter your Email'/>
-                </div>
-            </div>
-            <br />
-            <div className="Hospital-details">
-                <h2>Hospital details</h2>
-                <div className="usePer">
-                    <label htmlFor="hospital">Doctors Hospital: </label>
-                <input type="text" name="hospital" id="hospital" placeholder='Enter your Hospital Name'/>
-                </div>
-                <div className="usePer">
-                    <label htmlFor="experience">Doctors Experience: </label>
-                    <input type="number" name="experience" id="experience" placeholder='Enter your experience' />
-                </div>
-                <div className="usePer">
-                    <label htmlFor="Something">Doctors Something: </label>
-                    <input type="number" name="Something" id="Something" placeholder='Enter your Something' />
-                </div>
-            </div>
-            <br />
-            <div className="Patients-details">
-                <h2>Patients Details</h2>
-                <div className="usePer">
-                    <label htmlFor="patient">Patients Details: </label>
-                    <span> Rajesh</span>
-                    <span> 20 years old</span>
-                    <span> Diagnostic Report: Ongoing</span>
-                </div>
-                <div className="usePer">
-                    <label htmlFor="patient">Patients Details: </label>
-                    <span> Rajesh</span>
-                    <span> 20 years old</span>
-                    <span> Diagnostic Report: Recovered</span>
-                </div>
-                <div className="usePer">
-                    <label htmlFor="patient">Patients Details: </label>
-                    <span> Rajesh</span>
-                    <span> 20 years old</span>
-                    <span> Diagnostic Report: Dead</span>
-                </div>
-                <div className="usePer">
-                    <label htmlFor="patient">Patients Details: </label>
-                    <span> Rajesh</span>
-                    <span> 20 years old</span>
-                    <span> Diagnostic Report: Working</span>
-                </div>
-            </div>
-            <br />
-        </div>  
-        <br />
-        <br />
-      </div> 
+      )}
+
+      <div className="pat_container">
+        <div className="p_profile">
+          <p>
+            <CgProfile />
+          </p>
+          <button className="patientbtn" onClick={() => setProfileOpen(true)}>
+            PROFILE
+          </button>
+        </div>
+
+        <div className="p_appointment">
+          <p>
+            <FaAddressBook />
+          </p>
+          <button
+            className="patientbtn"
+            onClick={() => setAppointmentOpen(true)}
+          >
+            Appointments
+          </button>
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
+
+export default Doctor;

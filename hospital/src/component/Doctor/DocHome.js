@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './styles/home.css'
 import Footer from './component/Footer'
-import Nav from "./component/Nav";
+import DocNav from './DocNav'
 
-const Home = () => {
+const DocHome = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -65,7 +65,7 @@ const Home = () => {
   } 
   return (
     <>
-    <Nav/>
+  <DocNav/>
    <div className='home'>
       <div className='container'>
         <div className='content'>
@@ -127,4 +127,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default DocHome

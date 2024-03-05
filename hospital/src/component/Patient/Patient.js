@@ -192,6 +192,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { FaAddressBook } from "react-icons/fa";
 import "./patient.css";
+import PatNav from './PatNav'
 
 const Patient = () => {
   const [profileOpen, setProfileOpen] = useState(false);
@@ -349,6 +350,7 @@ const Patient = () => {
 
   return (
     <>
+    <PatNav/>
       {profileOpen && (
         <div className="pcontainer">
           <div className="patprofile">

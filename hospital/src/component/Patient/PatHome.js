@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import './styles/home.css'
 import Footer from './component/Footer'
-import Nav from "./component/Nav";
-
+import PatNav from './PatNav'
 const Home = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -65,7 +64,7 @@ const Home = () => {
   } 
   return (
     <>
-    <Nav/>
+    <PatNav/>
    <div className='home'>
       <div className='container'>
         <div className='content'>

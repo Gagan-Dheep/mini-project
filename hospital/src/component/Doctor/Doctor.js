@@ -1,11 +1,13 @@
 import React from 'react'
 import './forDoctor.css'
 import Avatar from '@mui/material/Avatar';
+import DocNav from './DocNav'
 
 
 export default function Doctor() {
   return (
     <>
+    <DocNav/>
     <div className='doctor'>
       <div className="container">
         <div className="avatar">

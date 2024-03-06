@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./admin.css";
-
+import AdmNav from "./AdmNav";
 const Admin = () => {
   const [patients, setPatients] = useState([
     "John Doe",
@@ -52,6 +52,9 @@ const Admin = () => {
   };
 
   return (
+    <>
+    <AdmNav/>
+
     <div className="admin-panel">
       <div className="patients">
         <h2>Patients</h2>
@@ -120,6 +123,7 @@ const Admin = () => {
         </table>
       </div>
     </div>
+    </>
   );
 };
 

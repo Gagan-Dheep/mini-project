@@ -302,7 +302,9 @@ const Doctor = () => {
             {editMode ? (
               <button onClick={handleSave}>Save</button>
             ) : (
-              <button onClick={() => setEditMode(true)}>Edit</button>
+              <FaRegEdit  onClick={() => setEditMode(true)} className="editbtn" />
+
+              /* <button onClick={() => setEditMode(true)}>Edit</button> */
             )}
           </div>
         </div>

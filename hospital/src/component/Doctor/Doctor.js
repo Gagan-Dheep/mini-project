@@ -218,10 +218,40 @@ const Doctor = () => {
     });
   };
 
-  const handleSave = () => {
-    console.log(DoctorData);
+  const handleSave = async (e) => {
+    // console.log(DoctorData);
     setEditMode(false);
     // Code for saving doctor data goes here
+    e.preventDefault();
+
+      let date = new Date();
+      try {
+        let dname = DoctorData.name;
+        let dage = DoctorData.age;
+        let dphone = DoctorData.phoneNumber;
+        let demail = DoctorData.email;
+        let dspecification = DoctorData.specification;
+        const response = await fetch("http://localhost:3002/api/doctors/details", {
+          method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    dname,
+                    dage,
+                    dphone,
+                    demail,
+                    dspecification,
+                    date
+                }),
+                credentials: 'include'
+        })
+        if (!response.ok) {
+          throw new Error("Failed to fetch doctors");
+        }
+        const data = await response.json();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      }
   };
 
   return (
@@ -300,7 +330,7 @@ const Doctor = () => {
               )}
             </label>
             {editMode ? (
-              <button onClick={handleSave}>Save</button>
+              <button onClick={(e) => handleSave(e)}>Save</button>
             ) : (
               <FaRegEdit  onClick={() => setEditMode(true)} className="editbtn" />
 

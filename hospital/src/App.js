@@ -7,6 +7,10 @@ import Signup from "./component/Signup";
 import Admin from './component/Admin/Admin'
 import Doctor from "./component/Doctor/Doctor";
 import Patient from "./component/Patient/Patient";
+
+import PatHome from "./component/Patient/PatHome";
+import DocHome from "./component/Doctor/DocHome";
+import AdmHome from "./component/Admin/AdmHome";
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -28,6 +32,12 @@ function App() {
             <Route path="/register" element={<Signup />} />
             <Route path="/admin" element={<Admin/>}></Route>
             <Route path="/doctor" element={<Doctor/>}></Route>
+
+            <Route path="/pathome" element={<PatHome/>}></Route>
+            <Route path="/DocHome" element={<DocHome/>}></Route>
+            <Route path="/admHome" element={<AdmHome/>}></Route>
+
+
             <Route path="/patient" element={<Patient/>}></Route>
           </Routes>
       </BrowserRouter>

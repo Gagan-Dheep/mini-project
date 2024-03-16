@@ -30,7 +30,7 @@ const PatNav = () => {
                     <div className='nav'>
                         <ul>
                             <li>
-                                <Link to='/' className='link'>Home</Link>
+                                <Link to='/pathome' className='link'>Home</Link>
                             </li>
                             <li>
                                 <Link to='/patient' className='link'>Patient</Link>

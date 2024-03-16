@@ -30,7 +30,7 @@ const AdmNav = () => {
                     <div className='nav'>
                         <ul>
                             <li>
-                                <Link to='/' className='link'>Home</Link>
+                                <Link to='/admHome' className='link'>Home</Link>
                             </li>
                             <li>
                                 <Link to='/admin' className='link'>Admin</Link>

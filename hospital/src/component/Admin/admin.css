@@ -63,3 +63,167 @@
     background-color: #dc3545;
   }
   
+
+
+  
+.home .container{
+  display: flex;
+  flex-wrap: wrap;
+  background: url(https://wallpaperaccess.com/full/958470.jpg);
+  background-size: cover;
+  height: 100vh;
+  
+  align-items: center;
+  padding: 60px 40px;
+  margin-bottom: 40px;
+}
+.home .container .content{
+  flex: 35%;
+}
+.home .container .image{
+  flex: 35%;
+}
+.home .container .content h3{
+font-size: 40px;
+color:#fec941;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.home .container .content p{
+  font-size: 18px;
+  color: white;
+  justify-content: center;
+  width: 600px;
+  margin-top: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.home .container .content .button{
+  margin-top: 30px;
+
+}
+.button .Shop-link{
+  color: white;
+  background:  #091243;
+  padding: 8px 12px;  
+  border-radius: 10px;
+  text-decoration: none;
+}
+.button .Shop-link:hover{
+background: white;
+color: #fec941;
+}
+.home .container .image{
+  filter: drop-shadow(5px 5px 5px rgb(38, 31, 31));
+  
+}
+
+/* about section */
+
+.about .container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.about .container .image{
+  flex: 35%;
+}
+.about .container .image img{
+  width: 70%;
+}
+.about .container .content{
+  flex: 35%;
+}
+.heading{
+  font-size: 33px;
+  color:#091243;
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.about .container .content p{
+  flex: 1 1 350px;
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* CONTACT */
+
+.contact {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.contact .heading {
+  color: #091243;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.contact .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact .container  .image {
+  flex: 1;
+}
+
+.contact .container .image img {
+ width: 35%;
+ justify-content: center;
+ filter: blur(0.2px);
+}
+
+.contact .contact-form {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #091243;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact .contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact .contact-form label {
+  display: flex;
+  margin-bottom: 5px;
+  color: #fec941;
+}
+
+.contact .contact-form input[type='text'],
+input[type='email'],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.contact .contact-form textarea {
+  resize: vertical;
+}
+
+.contact .contact-form button {
+  background-color: #fec941;
+  color: #091243;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact .contact-form button:hover {
+  background-color: white;
+  color: #fec941;
+}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
-import './styles/home.css'
-import Footer from './component/Footer'
+import Footer from '../Footer'
 import AdmNav from './AdmNav'
 
 const AdmHome = () => {

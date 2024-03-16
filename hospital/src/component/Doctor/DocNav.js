@@ -31,7 +31,7 @@ const DocNav = () => {
                     <div className='nav'>
                         <ul>
                             <li>
-                                <Link to='/' className='link'>Home</Link>
+                                <Link to='/DocHome' className='link'>Home</Link>
                             </li>
                           
                             <li>

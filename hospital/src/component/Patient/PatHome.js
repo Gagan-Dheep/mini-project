@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
-import './styles/home.css'
-import Footer from './component/Footer'
+// import './styles/home.css'
+import Footer from '../Footer'
 import PatNav from './PatNav'
-const Home = () => {
+const PatHome = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -126,4 +126,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default PatHome

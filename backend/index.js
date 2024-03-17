@@ -5,6 +5,10 @@ const authRegister = require('./routes/auth/register')
 const displayDoctorsInPatient = require('./routes/displayDoctorInPatients')
 const storeDoctorDetails = require('./routes/storeDoctorDetails')
 const displayAppointments = require('./routes/displayAppointments')
+const adminAddPatient = require('./routes/adminAddPatient')
+const adminAddDoctor = require('./routes/adminAddDoctor')
+const displayAdminDoctors = require('./routes/displayAdminDoctor')
+const displayAdminPatients = require('./routes/displayAdminPatient')
 const contactUs = require('./routes/contactUs')
 const authLogout = require('./routes/auth/authLogout')
 const cors = require('cors')
@@ -21,7 +25,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser("gagan", { httpOnly: true, signed: true }));
 app.use(bodyParser.json())
-
+  
 app.use('/api/login', authLogin)
 app.use('/api/signup', authRegister)
 app.use('/api/patient/guardian', storePatientGuardian)
@@ -29,6 +33,10 @@ app.use('/api/contactus', contactUs)
 app.use('/patient/details', displayDoctorsInPatient)
 app.use('/api/appointments/doctors', displayAppointments)
 app.use('/api/doctors/details', storeDoctorDetails)
+app.use('/api/add/patients', adminAddPatient)
+app.use('/api/add/doctors', adminAddDoctor)
+app.use('/api/get-all-doctors', displayAdminDoctors)
+app.use('/api/get-all-patients', displayAdminPatients)
 app.use('/api/logout', authLogout)
 
 app.listen(port, ()=> {

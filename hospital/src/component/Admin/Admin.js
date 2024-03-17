@@ -1,20 +1,114 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./admin.css";
 import AdmNav from "./AdmNav";
 const Admin = () => {
   const [patients, setPatients] = useState([
-    "John Doe",
-    "Jane Smith",
-    "Michael Johnson",
+    // "John Doe",
+    // "Jane Smith",
+    // "Michael Johnson",
   ]);
   const [doctors, setDoctors] = useState([
-    { name: "Dr. Smith", specialization: "Cardiologist" },
-    { name: "Dr. Johnson", specialization: "Pediatrician" },
-    { name: "Dr. Brown", specialization: "Orthopedic Surgeon" },
+    // { name: "Dr. Smith", specialization: "Cardiologist" },
+    // { name: "Dr. Johnson", specialization: "Pediatrician" },
+    // { name: "Dr. Brown", specialization: "Orthopedic Surgeon" },
   ]);
   const [newPatientName, setNewPatientName] = useState("");
   const [newDoctorName, setNewDoctorName] = useState("");
   const [newDoctorSpecialization, setNewDoctorSpecialization] = useState("");
+
+  useEffect(() => {
+      const fetchPatientsData = async() => {
+      try{
+        const response1 = await fetch('http://localhost:3002/api/get-all-patients', {
+          method: 'get',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include'
+        })
+        if (!response1.ok) {
+          throw new Error("some error");
+        }
+        const patdata = await response1.json();
+        console.log(patdata.patients);
+        setPatients(patdata.patients)
+      }
+      catch(err) {
+        console.log(err);
+        throw err;
+      }
+    }
+    const fetchDoctorData = async () => {
+      try{
+        const response2 = await fetch('http://localhost:3002/api/get-all-doctors', {
+          method: 'get',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include'
+        })
+        if (!response2.ok) {
+          throw new Error("some error");
+        }
+        const docdata = await response2.json();
+        console.log(docdata.doctors);
+        setDoctors(docdata.doctors)
+      }
+      catch(err) {
+        console.log(err);
+        throw err;
+      }
+    }
+    fetchPatientsData();
+    fetchDoctorData();
+  }, [])
+
+  const backendPatientAdd = async () => {
+    if (newPatientName.trim() === "") {
+      alert("Please enter a patient name.");
+      return;
+    }
+    else{
+      try{
+        let date = new Date();
+        const response = await fetch('http://localhost:3002/api/add/patients', {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({newPatientName, date}),
+          credentials: 'include'
+        })
+        if (response.ok){
+          console.log("its working");
+        }
+      }
+      catch(err) {
+        console.log(err);
+        throw new err;
+      }
+    }
+  }
+
+  const backendDoctorAdd = async () => {
+    if (newDoctorName.trim() === "") {
+      alert("Please enter a doctors name.");
+      return;
+    }
+    else{
+      try{
+        let date = new Date();
+        const response = await fetch('http://localhost:3002/api/add/doctors', {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({newDoctorName, newDoctorSpecialization, date}),
+          credentials: 'include'
+        })
+        if (response.ok){
+          console.log("its working");
+        }
+      }
+      catch(err) {
+        console.log(err);
+        throw new err;
+      }
+    }
+  }
+
 
   const addPatient = (name) => {
     if (name.trim() === "") {
@@ -64,7 +158,7 @@ const Admin = () => {
           value={newPatientName}
           onChange={(e) => setNewPatientName(e.target.value)}
         />
-        <button className="adminbtn" onClick={() => addPatient(newPatientName)}>Add Patient</button>
+        <button className="adminbtn" onClick={() => backendPatientAdd() && addPatient(newPatientName)}>Add Patient</button>
         <table>
           <thead>
             <tr>
@@ -75,7 +169,7 @@ const Admin = () => {
           <tbody>
             {patients.map((patient, index) => (
               <tr key={index}>
-                <td>{patient}</td>
+                <td>{patient.patname}</td>
                 <td>
                   <button className="adminrem" onClick={() => removePatient(index)}>Remove</button>
                 </td>
@@ -99,7 +193,7 @@ const Admin = () => {
             value={newDoctorSpecialization}
             onChange={(e) => setNewDoctorSpecialization(e.target.value)}
           />
-          <button className="adminbtn" onClick={addDoctor}>Add Doctor</button>
+          <button className="adminbtn" onClick={() => backendDoctorAdd() && addDoctor}>Add Doctor</button>
         </div>
         <table>
           <thead>
@@ -112,8 +206,8 @@ const Admin = () => {
           <tbody>
             {doctors.map((doctor, index) => (
               <tr key={index}>
-                <td>{doctor.name}</td>
-                <td>{doctor.specialization}</td>
+                <td>{doctor.docname}</td>
+                <td>{doctor.docspecialization}</td>
                 <td>
                   <button className="adminrem" onClick={() => removeDoctor(index)}>Remove</button>
                 </td>

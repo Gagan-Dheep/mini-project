@@ -59,6 +59,19 @@ const Admin = () => {
     fetchDoctorData();
   }, [])
 
+  const backendRemoveDoctor = async() => {
+    try {
+      const response = await fetch('http://localhost:3002/api/remove/doctor', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      })
+    }
+    catch(err) {
+      throw err;
+    }
+  }
+
   const backendPatientAdd = async () => {
     if (newPatientName.trim() === "") {
       alert("Please enter a patient name.");

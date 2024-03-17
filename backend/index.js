@@ -9,6 +9,9 @@ const adminAddPatient = require('./routes/adminAddPatient')
 const adminAddDoctor = require('./routes/adminAddDoctor')
 const displayAdminDoctors = require('./routes/displayAdminDoctor')
 const displayAdminPatients = require('./routes/displayAdminPatient')
+const roommoallotment = require('./routes/roomnoallotment')
+const removeDoctor = require('./routes/removeDoctor')
+const removePatient = require('./routes/removePatient')
 const contactUs = require('./routes/contactUs')
 const authLogout = require('./routes/auth/authLogout')
 const cors = require('cors')
@@ -37,8 +40,11 @@ app.use('/api/add/patients', adminAddPatient)
 app.use('/api/add/doctors', adminAddDoctor)
 app.use('/api/get-all-doctors', displayAdminDoctors)
 app.use('/api/get-all-patients', displayAdminPatients)
+// app.use('/api/roomallot', roommoallotment)
+app.use('/api/remove/doctor', removeDoctor)
+app.use('/api/remove/patient', removePatient)
 app.use('/api/logout', authLogout)
 
-app.listen(port, ()=> {
+app.listen(port, () => {
     console.log(`http://localhost:${port}`);
 })

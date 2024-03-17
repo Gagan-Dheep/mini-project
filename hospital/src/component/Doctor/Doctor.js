@@ -179,36 +179,41 @@ const Doctor = () => {
     specification: "",
   });
 
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const response = await fetch("http://localhost:3002/doctors");
-        if (!response.ok) {
-          throw new Error("Failed to fetch doctors");
-        }
-        const data = await response.json();
-        setDoctors(data);
-      } catch (error) {
-        console.error("Error fetching doctors:", error);
-      }
-    };
+  // useEffect(() => {
+    // const fetchDoctors = async () => {
+    //   try {
+    //     const response = await fetch("http://localhost:3002/doctors");
+    //     if (!response.ok) {
+    //       throw new Error("Failed to fetch doctors");
+    //     }
+    //     const data = await response.json();
+    //     setDoctors(data);
+    //   } catch (error) {
+    //     console.error("Error fetching doctors:", error);
+    //   }
+    // };
+    // fetchDoctors();
+  // }, []);
 
-    const fetchAppointments = async () => {
-      try {
-        const response = await fetch("http://localhost:3002/appointments");
-        if (!response.ok) {
-          throw new Error("Failed to fetch appointments");
-        }
-        const data = await response.json();
-        setAppointments(data);
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
+  const fetchAppointments = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3002/api/appointments/doctors", {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      })
+      if (!response.ok) {
+        throw new Error("Failed to fetch appointments");
       }
-    };
-
-    fetchDoctors();
-    fetchAppointments();
-  }, []);
+      const data = await response.json();
+      // console.log(data);
+      setDoctors(data.data);
+      // console.log(appointments);
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -347,15 +352,15 @@ const Doctor = () => {
             onClick={() => setAppointmentOpen(false)}
           />
           {/* Display appointments */}
-          {appointments.map((appointment, index) => (
+          {doctors.map((appointment, index) => (
             <div key={index} className="appointment">
               <label>
                 Patient Name:
-                <span>{appointment.patientName}</span>
+                <span>{appointment.username}     </span>
               </label>
               <label>
-                Doctor Name:
-                <span>{appointment.doctorName}</span>
+                Patient Email:
+                <span>{appointment.email}</span>
               </label>
               {/* Add more fields if needed */}
             </div>
@@ -379,7 +384,7 @@ const Doctor = () => {
           </p>
           <button
             className="patientbtn"
-            onClick={() => setAppointmentOpen(true)}
+            onClick={(e) => fetchAppointments(e) && setAppointmentOpen(true)}
           >
             Appointments
           </button>

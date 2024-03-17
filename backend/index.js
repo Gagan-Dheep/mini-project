@@ -4,6 +4,7 @@ const authLogin = require('./routes/auth/login')
 const authRegister = require('./routes/auth/register')
 const displayDoctorsInPatient = require('./routes/displayDoctorInPatients')
 const storeDoctorDetails = require('./routes/storeDoctorDetails')
+const displayAppointments = require('./routes/displayAppointments')
 const contactUs = require('./routes/contactUs')
 const authLogout = require('./routes/auth/authLogout')
 const cors = require('cors')
@@ -26,8 +27,8 @@ app.use('/api/signup', authRegister)
 app.use('/api/patient/guardian', storePatientGuardian)
 app.use('/api/contactus', contactUs)
 app.use('/patient/details', displayDoctorsInPatient)
+app.use('/api/appointments/doctors', displayAppointments)
 app.use('/api/doctors/details', storeDoctorDetails)
-
 app.use('/api/logout', authLogout)
 
 app.listen(port, ()=> {

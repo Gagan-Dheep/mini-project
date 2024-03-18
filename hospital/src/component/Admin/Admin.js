@@ -97,6 +97,44 @@ const Admin = () => {
     }
   }
 
+  const removeFromBackendPatient = async (name) => {
+    console.log(name);
+    try{
+    const response = fetch('http://localhost:3002/api/remove/patient', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({name}),
+      credentials: 'include'
+    })
+    if (response.ok){
+      console.log("its working");
+    }
+  }
+    catch(err) {
+      console.log(err);
+      throw new err;
+    }
+  }
+
+  const removeFromBackendDoctor = async (docnametemp, docspectemp) => {
+    // console.log(docnametemp, docspectemp);
+    try{
+    const response = await fetch('http://localhost:3002/api/remove/doctor', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({docnametemp, docspectemp}),
+      credentials: 'include'
+    })
+    if (response.ok){
+      console.log("its working");
+    }
+  }
+    catch(err) {
+      console.log(err);
+      throw new err;
+    }
+  }
+
   const backendDoctorAdd = async () => {
     if (newDoctorName.trim() === "") {
       alert("Please enter a doctors name.");
@@ -184,7 +222,7 @@ const Admin = () => {
               <tr key={index}>
                 <td>{patient.patname}</td>
                 <td>
-                  <button className="adminrem" onClick={() => removePatient(index)}>Remove</button>
+                  <button className="adminrem" onClick={() => removeFromBackendPatient(patients[index]) && removePatient(index)}>Remove</button>
                 </td>
               </tr>
             ))}
@@ -222,7 +260,7 @@ const Admin = () => {
                 <td>{doctor.docname}</td>
                 <td>{doctor.docspecialization}</td>
                 <td>
-                  <button className="adminrem" onClick={() => removeDoctor(index)}>Remove</button>
+                  <button className="adminrem" onClick={() => removeFromBackendDoctor(doctors[index].docname, doctors[index].docspecialization) && removeDoctor(index)}>Remove</button>
                 </td>
               </tr>
             ))}

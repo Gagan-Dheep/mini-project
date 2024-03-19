@@ -47,10 +47,23 @@ export default function Signup() {
             } else if (response.ok && action === 'login') {
                 // if (!response.status === 402) {
                     
-                
+                const data = await response.json();
+                const token = data.token;
+                if (!token) {
+                    throw new Error('No token received from server');
+                }
+
+                if (data.role === 'patient') {
+                    setTimeout(() => navigate('/pathome'), 1000);
+                }
+                else{
+                    setTimeout(() => navigate('/Dochome'), 1000);
+                }
+                // Redirect to patient home page
+                // navigate('/pathome');
                 // // Handle successful signup/login (e.g., redirect, set authentication state)
                 // // console.log('User signed up/logged in successfully!');
-                // // setTimeout(() => navigate('/'), 1000);
+                
                 // // setAction('login')
                 // // sessionStorage.setItem('userEmail',email)
                 // // sessionStorage.setItem('userType',userType)

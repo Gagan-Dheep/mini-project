@@ -98,9 +98,9 @@ const Admin = () => {
   }
 
   const removeFromBackendPatient = async (name) => {
-    console.log(name);
+    // console.log(name);
     try{
-    const response = fetch('http://localhost:3002/api/remove/patient', {
+    const response = fetch('http://localhost:3002/api/remove/admin/patient', {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({name}),
@@ -119,7 +119,7 @@ const Admin = () => {
   const removeFromBackendDoctor = async (docnametemp, docspectemp) => {
     // console.log(docnametemp, docspectemp);
     try{
-    const response = await fetch('http://localhost:3002/api/remove/doctor', {
+    const response = await fetch('http://localhost:3002/api/remove/admin/doctor', {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({docnametemp, docspectemp}),

@@ -36,7 +36,7 @@ const Home = () => {
   const handleContactUs = async (e) => {
     e.preventDefault();
       try {
-        console.log(name, email, message);
+        // console.log(name, email, message);
         const response = await fetch('http://localhost:3002/api/contactus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -47,17 +47,19 @@ const Home = () => {
             }),
             credentials: 'include'
         });
-
+        const data = await response.json();
+        // console.log(data);
+        if (!response.ok) {
+          alert(data.message)
+        }
+        else{
         if (response.ok) {
-            
-        } 
-        else if (response.ok) {
-             
+            alert("successfully contact is submitted")
         } 
         else {
             const errorData = await response.json();
             setErrorMessage(errorData.message);
-        }
+        }}
     } catch (error) {
         console.error('Error during signup/login:', error);
         setErrorMessage('An error occurred, please try again.');

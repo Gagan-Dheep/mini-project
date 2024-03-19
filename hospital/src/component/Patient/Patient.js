@@ -1,196 +1,9 @@
-// import React, { useState } from "react";
-// import { CgProfile } from "react-icons/cg";
-// import { FaRegEdit } from "react-icons/fa";
-// import { IoMdClose } from "react-icons/io";
-// import "./patient.css";
-// const Patient = () => {
-//   const [close, setClose] = useState(false);
-//   const view = () => {
-//     setClose(true);
-//   };
-//   const [editMode, setEditMode] = useState(false);
-//   const [patientData, setPatientData] = useState({
-//     name: "",
-//     age: "",
-//     phoneNumber: "",
-//     email: "",
-//     guardian: {
-//     name: "",
-//       phoneNumber: "",
-//     },
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setPatientData({
-//       ...patientData,
-//       [name]: value,
-//     });
-//   };
-
-//   const handleGuardianChange = (e) => {
-//     const { name, value } = e.target;
-//     setPatientData({
-//       ...patientData,
-//       guardian: {
-//         ...patientData.guardian,
-//         [name]: value,
-//       },
-//     });
-//   };
-
-//   const handleEdit = () => {
-//     setEditMode(true);
-//   };
-
-//   const handleSave = () => {
-//     console.log(patientData);
-//     setEditMode(false);
-//     setPatientData({
-//       name: "",
-//       age: "",
-//       phoneNumber: "",
-//       email: "",
-//       guardian: {
-//         name: "",
-//         phoneNumber: "",
-//       },
-//     });
-//   };
-
-//   const doctors = [
-//     {
-//       name: "Dr. John Doe",
-//       specification: "Cardiologist",
-//       timing: "9:00 AM - 5:00 PM",
-//     },
-//     {
-//       name: "Dr. Jane Smith",
-//       specification: "Dermatologist",
-//       timing: "10:00 AM - 6:00 PM",
-//     },
-//   ];
-//   return (
-//     <>
-//       {close ? (
-//         <div className="pcontainer">
-//         <div className="patprofile">
-//           {/* <button className="close-btn" onClick={() => setClose(false)}>Close</button> */}
-//           <IoMdClose className="close-btn" onClick={() => setClose(false)}/> 
-//           <label>
-//             Patient Name:
-//             {editMode ? (
-//               <input type="text" name="name" value={patientData.name} onChange={handleChange}
-//               />
-//             ) : (
-//               <span>{patientData.name}</span>
-//             )}
-//           </label>
-//           <label>
-//             Age:
-//             {editMode ? (
-//               <input type="number" name="age" value={patientData.age} onChange={handleChange}
-//               />
-//             ) : (
-//               <span>{patientData.age}</span>
-//             )}
-//           </label>
-//           <label>
-//             Phone Number:
-//             {editMode ? (
-//               <input type="tel" name="phoneNumber" value={patientData.phoneNumber} onChange={handleChange}
-//               />
-//             ) : (
-//               <span>{patientData.phoneNumber}</span>
-//             )}
-//           </label>
-//           <label>
-//             Email:
-//             {editMode ? (
-//               <input type="email" name="email" value={patientData.email} onChange={handleChange}
-//               />
-//             ) : (
-//               <span>{patientData.email}</span>
-//             )}
-//           </label>
-//           <label>
-//             Guardian Name:
-//             {editMode ? (
-//               <input type="text" name="name" value={patientData.guardian.name} onChange={handleGuardianChange}
-//               />
-//             ) : (
-//               <span>{patientData.guardian.name}</span>
-//             )}
-//           </label>
-//           <label>
-//             Guardian Phone Number:
-//             {editMode ? (
-//               <input type="tel" name="phoneNumber" value={patientData.guardian.phoneNumber} onChange={handleGuardianChange}
-//               />
-//             ) : (
-//               <span>{patientData.guardian.phoneNumber}</span>
-//             )}
-//           </label>
-//           {editMode ? (
-//             <button onClick={handleSave} className="sbtn">Save</button>
-//           ) : (
-//             <FaRegEdit onClick={handleEdit} className="editbtn"/>
-//           )}
-//         </div>
-//         </div>
-//       ) : null}
-
-//       {close ? (
-//   <div className="apt_details">
-//   <IoMdClose className="close-btn" onClick={() => setClose(false)}/> 
-//     {doctors.map((doctor, index) => (
-//       <div key={index} className="doctor">
-//         <label>
-//           Doctor Name:
-//           <span>{doctor.name}</span>
-//         </label>
-//         <label>
-//           Specification:
-//           <span>{doctor.specification}</span>
-//         </label>
-//         <label>
-//           Timing:
-//           <span>{doctor.timing}</span>
-//         </label>
-//         <button className="appointment-btn" onClick={() => console.log("Appointment button clicked")}>
-//           Make Appointment
-//         </button>
-//       </div>
-//     ))}
-//   </div>
-// ) : null}
-
-  
-//       <div className="p_profile">
-//         <p>
-//           <CgProfile />
-//         </p>
-//         <button onClick={() => view()} >PROFILE</button>
-//       </div>
-
-//       <div className="p_appointment">
-//       <p>
-//           appointment
-//         </p>
-//         <button onClick={() => view()} >appointment</button>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Patient;
-
-
 import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FaRegEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { FaAddressBook } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 import "./patient.css";
 import PatNav from './PatNav'
 
@@ -211,6 +24,8 @@ const Patient = () => {
     },
   });
    
+  let navigate = useNavigate();
+
   // useEffect(()=> {
      const DoctorDetails = async(e) => {
       // console.log("DoctorDetai");
@@ -296,7 +111,26 @@ const Patient = () => {
   //     throw err;
   //   }
   // }
-
+  const clearInput = async () => {
+    // e.preventDefault();
+    // console.log("ggan");
+    setPatientData({
+      name: "",
+      age: "",
+      phoneNumber: "",
+      email: "",
+      guardian: {
+        name: "",
+        phoneNumber: "",
+      },
+    });
+    // setPatientData.name('');
+    // setPatientData.age('');
+    // setPatientData.phoneNumber('');
+    // setPatientData.email('');
+    // setDoctors.guardian.name('');
+    // setDoctors.guardian.phoneNumber('');
+};
   const handleSaveBackend = async(e) => {
     console.log("yeh");
     e.preventDefault();
@@ -321,14 +155,21 @@ const Patient = () => {
                 }),
                 credentials: 'include'
             });
-
-            if (response.ok){
-
+            const data = await response.json();
+            if (!response.ok) {
+              alert(data.message)
             }
-            else {
-                const errorData = await response.json();
-                setErrorMessage(errorData.message);
-            }
+            else{
+              if (response.ok){
+                alert("successFully data has been Updated");
+                // setTimeout(() => navigate('/patient'), 1000);
+                clearInput();
+              }
+              else {
+                  const errorData = await response.json();
+                  setErrorMessage(errorData.message);
+              }
+          }
         } catch (error) {
             console.error('Error during signup/login:', error);
             setErrorMessage('An error occurred, please try again.');

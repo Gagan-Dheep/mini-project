@@ -226,6 +226,24 @@ const Doctor = () => {
     });
   };
 
+  const clearInput = async () => {
+    // e.preventDefault();
+    // console.log("ggan");
+    setDoctorData({
+      name: "",
+      age: "",
+      phoneNumber: "",
+      email: "",
+      specification: ""
+    });
+    // setPatientData.name('');
+    // setPatientData.age('');
+    // setPatientData.phoneNumber('');
+    // setPatientData.email('');
+    // setDoctors.guardian.name('');
+    // setDoctors.guardian.phoneNumber('');
+};
+
   const handleSave = async (e) => {
     // console.log(DoctorData);
     setEditMode(false);
@@ -253,13 +271,19 @@ const Doctor = () => {
             date,
           }),
           credentials: "include",
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch doctors");
-      }
-      const data = await response.json();
-      setDoctors(data);
+        
+        })
+       const data = await response.json();
+
+       if (!response.ok) {
+        alert(data.message)
+      }else{
+        if (response.ok){
+          alert("successFully data has been Updated");
+          // setTimeout(() => navigate('/patient'), 1000);
+          clearInput();
+          setDoctors(data);
+      }}
     } catch (error) {
       console.error("Error fetching doctors:", error);
     }

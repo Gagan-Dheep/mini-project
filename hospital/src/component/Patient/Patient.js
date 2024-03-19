@@ -437,10 +437,10 @@ const Patient = () => {
         </div>
       )}
 
-      {appointmentOpen && (
+      {/* {appointmentOpen && (
         <div className="apt_details">
           <IoMdClose className="close-btn" onClick={() => setAppointmentOpen(false)} />
-          {/* {console.log(doctors)} */}
+          {console.log(doctors)}
           {doctors.map((doctor, index) => (
             <div key={index} className="doctor">
               <label>
@@ -461,27 +461,27 @@ const Patient = () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
 
 
-      {isAppointmentOpen && (
+      {appointmentOpen && (
   <div className="apt_details">
-    <IoMdClose className="close-btn" onClick={() => setIsAppointmentOpen(false)} />
+    <IoMdClose className="close-btn" onClick={() => setAppointmentOpen(false)} />
     <table>
       <thead>
         <tr>
+          <th>Doctor SlNo</th>
           <th>Doctor Name</th>
-          <th>Specification</th>
-          <th>Timing</th>
+          <th>Doctor Email</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        {doctorList.map((doctor, index) => (
+        {doctors.map((doctor, index) => (
           <tr key={index} className="doctor">
-            <td>{doctor.name}</td>
-            <td>{doctor.specification}</td>
-            <td>{doctor.timing}</td>
+            <td>{doctor.slno}</td>
+            <td>{doctor.username}</td>
+            <td>{doctor.email}</td>
             <td>
               <button className="appointment-btn" onClick={() => console.log("Appointment button clicked")}>
                 Make Appointment
@@ -507,12 +507,13 @@ const Patient = () => {
       <div className="p_appointment">
        <p><FaAddressBook /></p>
       
-        <button  className="patientbtn" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>appointment</button>
+        {/* <button  className="patientbtn" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>appointment</button> */}
 
 {/* new code */}
-        <button className="newappoint" onClick={handleNewAppointmentClick}>New Appointment</button>
+        <button className="newappoint" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>New Appointment</button>
       </div>
 </div>
+{/* onClick={handleNewAppointmentClick} */}
       
     </>
   );

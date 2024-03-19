@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../../server')
 
-router.post('', (req, res) => { 
+router.post('/', (req, res) => { 
     // console.log(req.body);
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
     const role = req.body.userType;
     const date = new Date();
-    if (!username || !email || !password || !role) {
+    if (!username || !email || !password) {
       return res.status(500).json({error: "message", message:"The input field cannot be empty"});
     }
     else{ 

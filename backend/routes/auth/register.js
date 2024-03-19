@@ -10,7 +10,7 @@ router.post('', (req, res) => {
     const role = req.body.userType;
     const date = new Date();
     if (!username || !email || !password || !role) {
-      return res.status(500);
+      return res.status(500).json({error: "message", message:"The input field cannot be empty"});
     }
     else{ 
       connection.query('SELECT * FROM login WHERE username = ? OR email = ?', [username, email], async (err, result) => {

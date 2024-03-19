@@ -39,6 +39,11 @@ export default function Signup() {
                 credentials: 'include'
             });
 
+            const data = await response.json();
+            if (!response.ok) {
+                alert(data.message)
+            }
+            else{
             if (response.ok && action === 'signup') {
                 // Handle successful signup/login (e.g., redirect, set authentication state)
                 // console.log('User signed up/logged in successfully!');
@@ -47,7 +52,7 @@ export default function Signup() {
             } else if (response.ok && action === 'login') {
                 // if (!response.status === 402) {
                     
-                const data = await response.json();
+                // const data = await response.json();
                 const token = data.token;
                 if (!token) {
                     throw new Error('No token received from server');
@@ -87,7 +92,7 @@ export default function Signup() {
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message);
-            }
+               }   }
         } catch (error) {
             console.error('Error during signup/login:', error);
             setErrorMessage('An error occurred, please try again.');

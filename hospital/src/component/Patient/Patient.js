@@ -348,24 +348,24 @@ const Patient = () => {
   //   },
   // ];
 
-  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-  const [doctorList, setDoctorList] = useState([]);
-  const handleNewAppointmentClick = () => {
-    const x = [
-      {
-        name: "Dr. John Doe",
-        specification: "Cardiologist",
-        timing: "9:00 AM - 5:00 PM",
-      },
-      {
-        name: "Dr. Jane Smith",
-        specification: "Dermatologist",
-        timing: "10:00 AM - 6:00 PM",
-      },
-    ];
-    setDoctorList(x);
-    setIsAppointmentOpen(true);
-  };
+  // const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
+  // const [doctorList, setDoctorList] = useState([]);
+  // const handleNewAppointmentClick = () => {
+  //   const x = [
+  //     {
+  //       name: "Dr. John Doe",
+  //       specification: "Cardiologist",
+  //       timing: "9:00 AM - 5:00 PM",
+  //     },
+  //     {
+  //       name: "Dr. Jane Smith",
+  //       specification: "Dermatologist",
+  //       timing: "10:00 AM - 6:00 PM",
+  //     },
+  //   ];
+  //   setDoctorList(x);
+  //   setIsAppointmentOpen(true);
+  // };
   return (
     <>
     <PatNav/>

@@ -265,17 +265,17 @@ const Doctor = () => {
     }
   };
 
-  const [doctorList, setDoctorList] = useState([
-    {
-      name: "h",
-      email: "abc@gmail.com",
-    },
-    {
-      name: "q",
-      email: "aec@gmail.com",
-    },
-  ]);
-  const [isAppointmentOpen, setIsAppointmentOpen] = useState(true);
+  // const [doctorList, setDoctorList] = useState([
+  //   {
+  //     name: "h",
+  //     email: "abc@gmail.com",
+  //   },
+  //   {
+  //     name: "q",
+  //     email: "aec@gmail.com",
+  //   },
+  // ]);
+  // const [isAppointmentOpen, setIsAppointmentOpen] = useState(true);
   return (
     <>
       <DocNav />
@@ -365,14 +365,14 @@ const Doctor = () => {
         </div>
       )}
 
-      {appointmentOpen && (
+      {/* {appointmentOpen && (
         <div className="apt_details">
           <IoMdClose
             className="close-btn"
             onClick={() => setAppointmentOpen(false)}
           />
           {/* Display appointments */}
-          {doctors.map((appointment, index) => (
+          {/* {doctors.map((appointment, index) => (
             <div key={index} className="appointment">
               <label>
                 Patient Name:
@@ -381,18 +381,18 @@ const Doctor = () => {
               <label>
                 Patient Email:
                 <span>{appointment.email}</span>
-              </label>
+              </label> */}
               {/* Add more fields if needed */}
-            </div>
+            {/* </div>
           ))}
         </div>
-      )}
+      )} */} 
 
-      {isAppointmentOpen && (
+      {appointmentOpen && (
         <div className="apt_details">
           <IoMdClose
             className="close-btn"
-            onClick={() => setIsAppointmentOpen(false)}
+            onClick={() => setAppointmentOpen(false)}
           />
           {/* Display appointments in a table */}
           <table>
@@ -404,9 +404,9 @@ const Doctor = () => {
               </tr>
             </thead>
             <tbody>
-              {doctorList.map((appointment, index) => (
+              {doctors.map((appointment, index) => (
                 <tr key={index}>
-                  <td>{appointment.name}</td>
+                  <td>{appointment.username}</td>
                   <td>{appointment.email}</td>
                   {/* Add more table cells if needed */}
                 </tr>
@@ -429,19 +429,16 @@ const Doctor = () => {
           <p>
             <FaAddressBook />
           </p>
-          <button
+          {/* <button
             className="patientbtn"
             onClick={(e) => fetchAppointments(e) && setAppointmentOpen(true)}
           >
             Appointments
-          </button>
+          </button> */}
 
           <button
             className="patientbtn"
-            onClick={(e) => {
-              fetchAppointments(e);
-              setIsAppointmentOpen(true);
-            }}
+            onClick={(e) => fetchAppointments(e) && setAppointmentOpen(true)}
           >
             new Appointments
           </button>

@@ -180,29 +180,32 @@ const Doctor = () => {
   });
 
   // useEffect(() => {
-    // const fetchDoctors = async () => {
-    //   try {
-    //     const response = await fetch("http://localhost:3002/doctors");
-    //     if (!response.ok) {
-    //       throw new Error("Failed to fetch doctors");
-    //     }
-    //     const data = await response.json();
-    //     setDoctors(data);
-    //   } catch (error) {
-    //     console.error("Error fetching doctors:", error);
-    //   }
-    // };
-    // fetchDoctors();
+  // const fetchDoctors = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:3002/doctors");
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch doctors");
+  //     }
+  //     const data = await response.json();
+  //     setDoctors(data);
+  //   } catch (error) {
+  //     console.error("Error fetching doctors:", error);
+  //   }
+  // };
+  // fetchDoctors();
   // }, []);
 
   const fetchAppointments = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3002/api/appointments/doctors", {
-        method: "GET",
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include'
-      })
+      const response = await fetch(
+        "http://localhost:3002/api/appointments/doctors",
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch appointments");
       }
@@ -229,36 +232,50 @@ const Doctor = () => {
     // Code for saving doctor data goes here
     e.preventDefault();
 
-      let date = new Date();
-      try {
-        let dname = DoctorData.name;
-        let dage = DoctorData.age;
-        let dphone = DoctorData.phoneNumber;
-        let demail = DoctorData.email;
-        let dspecification = DoctorData.specification;
-        const response = await fetch("http://localhost:3002/api/doctors/details", {
-          method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    dname,
-                    dage,
-                    dphone,
-                    demail,
-                    dspecification,
-                    date
-                }),
-                credentials: 'include'
-        })
-        if (!response.ok) {
-          throw new Error("Failed to fetch doctors");
+    let date = new Date();
+    try {
+      let dname = DoctorData.name;
+      let dage = DoctorData.age;
+      let dphone = DoctorData.phoneNumber;
+      let demail = DoctorData.email;
+      let dspecification = DoctorData.specification;
+      const response = await fetch(
+        "http://localhost:3002/api/doctors/details",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            dname,
+            dage,
+            dphone,
+            demail,
+            dspecification,
+            date,
+          }),
+          credentials: "include",
         }
-        const data = await response.json();
-        setDoctors(data);
-      } catch (error) {
-        console.error("Error fetching doctors:", error);
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch doctors");
       }
+      const data = await response.json();
+      setDoctors(data);
+    } catch (error) {
+      console.error("Error fetching doctors:", error);
+    }
   };
 
+  const [doctorList, setDoctorList] = useState([
+    {
+      name: "h",
+      email: "abc@gmail.com",
+    },
+    {
+      name: "q",
+      email: "aec@gmail.com",
+    },
+  ]);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(true);
   return (
     <>
       <DocNav />
@@ -337,7 +354,10 @@ const Doctor = () => {
             {editMode ? (
               <button onClick={(e) => handleSave(e)}>Save</button>
             ) : (
-              <FaRegEdit  onClick={() => setEditMode(true)} className="editbtn" />
+              <FaRegEdit
+                onClick={() => setEditMode(true)}
+                className="editbtn"
+              />
 
               /* <button onClick={() => setEditMode(true)}>Edit</button> */
             )}
@@ -356,7 +376,7 @@ const Doctor = () => {
             <div key={index} className="appointment">
               <label>
                 Patient Name:
-                <span>{appointment.username}     </span>
+                <span>{appointment.username} </span>
               </label>
               <label>
                 Patient Email:
@@ -368,6 +388,33 @@ const Doctor = () => {
         </div>
       )}
 
+      {isAppointmentOpen && (
+        <div className="apt_details">
+          <IoMdClose
+            className="close-btn"
+            onClick={() => setIsAppointmentOpen(false)}
+          />
+          {/* Display appointments in a table */}
+          <table>
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Patient Email</th>
+                {/* Add more table headers if needed */}
+              </tr>
+            </thead>
+            <tbody>
+              {doctorList.map((appointment, index) => (
+                <tr key={index}>
+                  <td>{appointment.name}</td>
+                  <td>{appointment.email}</td>
+                  {/* Add more table cells if needed */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       <div className="pat_container">
         <div className="p_profile">
           <p>
@@ -387,6 +434,16 @@ const Doctor = () => {
             onClick={(e) => fetchAppointments(e) && setAppointmentOpen(true)}
           >
             Appointments
+          </button>
+
+          <button
+            className="patientbtn"
+            onClick={(e) => {
+              fetchAppointments(e);
+              setIsAppointmentOpen(true);
+            }}
+          >
+            new Appointments
           </button>
         </div>
       </div>

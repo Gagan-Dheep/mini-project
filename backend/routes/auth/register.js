@@ -8,18 +8,19 @@ router.post('', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const role = req.body.userType;
+    const date = new Date();
     if (!username || !email || !password || !role) {
       return res.status(500);
     }
     else{ 
       connection.query('SELECT * FROM login WHERE username = ? OR email = ?', [username, email], async (err, result) => {
         if (err) {
-            throw err;
+            throw err; 
         }
         if (result[0])
         return res.status(500).json({ status: "error", error: "Username or email already present" })
       else{
-      connection.query('INSERT INTO login (username, email, password, role) VALUES (?, ?, ?, ?)', [username, email, password, role], async(error, result) => {
+      connection.query('INSERT INTO login (username, email, password, role, date) VALUES (?, ?, ?, ?, ?)', [username, email, password, role, date], async(error, result) => {
         if (error) 
           throw error;
         

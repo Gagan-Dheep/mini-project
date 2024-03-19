@@ -3,9 +3,8 @@ const router = express.Router();
 const connection = require('../server')
 const verifyToken = require('../middleware/verifytoken')
 
-
-
 router.post('/', verifyToken, (req, res) => {
+    console.log("something");
     const patname = req.body.newPatientName;
     const date = req.body.date;
     // console.log(req.body);

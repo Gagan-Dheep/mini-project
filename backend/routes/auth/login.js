@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
                     // secure:true
                     // sameSite:'None'
                 })
-                  return res.send({token: token, message: "login successful"});
+                  return res.send({token: token, message: "login successful", role: role});
                   // console.log(token);
                 }
   

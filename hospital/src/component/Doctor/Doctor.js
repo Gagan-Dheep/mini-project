@@ -464,7 +464,7 @@ const Doctor = () => {
             className="patientbtn"
             onClick={(e) => fetchAppointments(e) && setAppointmentOpen(true)}
           >
-            new Appointments
+            Appointments
           </button>
         </div>
       </div>

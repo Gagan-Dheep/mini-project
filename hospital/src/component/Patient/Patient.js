@@ -351,7 +351,7 @@ const Patient = () => {
         {/* <button  className="patientbtn" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>appointment</button> */}
 
 {/* new code */}
-        <button className="newappoint" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>New Appointment</button>
+        <button className="patientbtn" onClick={(e) => DoctorDetails(e) && setAppointmentOpen(true)}>Appointment</button>
       </div>
 </div>
 {/* onClick={handleNewAppointmentClick} */}

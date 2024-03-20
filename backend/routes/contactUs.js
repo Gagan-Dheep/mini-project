@@ -7,7 +7,8 @@ router.post('/', verifyToken, async(req, res) => {
     const {name, email, message} = req.body;
     // console.log(req.body)
     if (!email || !name || !message) {
-      return res.status(500);
+      // console.log("uu");
+      return res.status(500).json({error: "message", message:"The input field cannot be empty"});
     }
     else{
       connection.query('INSERT INTO contactus (name, email, message) VALUES (?, ?, ?)', [name, email, message], async(error, result) => {

@@ -37,10 +37,6 @@ const DocNav = () => {
                             <li>
                                 <Link to='/doctor' className='link'>Doctor</Link>
                             </li>
-                            
-                            <li>
-                                <Link to='/register' className='link'>Sign-In/Up</Link>
-                            </li>
                             <li>
                                 <button onClick={() => Logout()} className='logoutbtn'>logout</button>
                             </li>

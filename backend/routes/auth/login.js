@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
     const role = req.body.userType;
     // console.log(role);
     if (!email || !password) {
-      return res.status(500);
+      return res.status(500).json({error: "message", message:"The input field cannot be empty"});
     }
     else{
     connection.query('SELECT * FROM login WHERE email = ?', [email], async(error, result) => {
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
                     // secure:true
                     // sameSite:'None'
                 })
-                  return res.send({token: token, message: "login successful"});
+                  return res.send({token: token, message: "login successful", role: role});
                   // console.log(token);
                 }
   

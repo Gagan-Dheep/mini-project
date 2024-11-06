@@ -85,7 +85,7 @@ const Home = () => {
    <h2 className='heading'>ABOUT HEAL EAZY</h2>
     <div className='container'>
         <div className='image'>
-            <img src='https://www.iselectmd.com/wp-content/uploads/2018/10/healthcare-system-graphic.png' ></img>
+            <img src='https://thumbnails.yayimages.com/1600/1/7f7/17f724e.jpg' height="400"></img>
         </div>
         <div className='content'>
           <p>Welcome to heal eazy, where we revolutionize healthcare management with our innovative system. Our streamlined operations empower providers to focus on exceptional patient care. Backed by expertise and driven by passion, we continuously enhance our system to meet the evolving needs of modern healthcare. Join us in revolutionizing healthcare management for better patient outcomes.</p>

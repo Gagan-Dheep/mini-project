@@ -82,3 +82,86 @@
   font-size: 20px;
   cursor: pointer;
 }
+
+/* Style for appointment action buttons */
+td button {
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+/* Specific styles for each button */
+td button:nth-child(1) { /* Accept button */
+  background-color: #28a745; /* Green */
+}
+
+td button:nth-child(1):hover {
+  background-color: #218838;
+}
+
+td button:nth-child(2) { /* Reject button */
+  background-color: #dc3545; /* Red */
+}
+
+td button:nth-child(2):hover {
+  background-color: #c82333;
+}
+
+td button:nth-child(3) { /* Reschedule button */
+  background-color: #ffc107; /* Yellow */
+  color: #212529; /* Dark text */
+}
+
+td button:nth-child(3):hover {
+  background-color: #e0a800;
+}
+
+/* Style for reschedule popup */
+.reschedule-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: auto;
+}
+
+.reschedule-popup label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.reschedule-popup input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.reschedule-popup button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reschedule-popup button:hover {
+  background-color: #0056b3;
+}

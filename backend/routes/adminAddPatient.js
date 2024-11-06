@@ -6,7 +6,8 @@ const verifyToken = require('../middleware/verifytoken')
 router.post('/', verifyToken, (req, res) => {
     console.log("something");
     const patname = req.body.newPatientName;
-    const date = req.body.date;
+    // const date = req.body.date;
+    let date = new Date()
     // console.log(req.body);
     if (!patname) {
         throw new Error("cannot be empty");

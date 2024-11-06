@@ -7,7 +7,9 @@ const verifyToken = require('../middleware/verifytoken')
 router.post('/', verifyToken, (req, res) => {
     const docname = req.body.newDoctorName;
     const docspecialization = req.body.newDoctorSpecialization;
-    const date = req.body.date;
+    // const date = req.body.date;
+    let date = new Date()
+
     // console.log(req.body);
     if (!docname || !docspecialization) {
         throw new Error("cannot be empty");

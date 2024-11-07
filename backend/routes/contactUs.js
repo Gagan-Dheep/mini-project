@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../server')
-const verifyToken = require('../middleware/verifytoken')
 
-router.post('/', verifyToken, async(req, res) => {
+router.post('/', async(req, res) => {
     const {name, email, message} = req.body;
     // console.log(req.body)
     if (!email || !name || !message) {

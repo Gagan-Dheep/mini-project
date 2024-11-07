@@ -402,7 +402,7 @@ const Doctor = () => {
             <label>
               Doctor Name:
               {editMode ? (
-                <input type="text" name="name" value={DoctorData.name} onChange={(e) => setDoctorData({ ...DoctorData, name: e.target.value })} />
+                <input type="text" name="name" value={DoctorData.name} onChange={(e) => setDoctorData({ ...DoctorData, name: e.target.value })} disabled/>
               ) : (
                 <span>{DoctorData.name}</span>
               )}

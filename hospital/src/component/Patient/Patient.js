@@ -217,7 +217,7 @@ const Patient = () => {
             <label>
               Patient Name:
               {editMode ? (
-                <input type="text" name="name" value={patientData.name} onChange={handleChange} />
+                <input type="text" name="name" value={patientData.name} onChange={handleChange} disabled/>
               ) : (
                 <span>{patientData.name}</span>
               )}
